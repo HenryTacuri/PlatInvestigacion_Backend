@@ -1,0 +1,375 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[runningheads]{llncs}
+\titlerunning{Universidad Politecnica Salesiana}
+
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%Âº
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+%
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{cite}
+\usepackage{breqn}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx} % Importa el paquete
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb} 
+\usepackage{array}
+\usepackage{algpseudocode}
+\usepackage{blindtext}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{epstopdf}
+\usepackage{placeins}
+\usepackage{wrapfig}
+\usepackage{graphicx} % Necesario para \includegraphics
+\usepackage{enumitem}
+
+\restylefloat{algorithm}
+\newcommand{\INDSTATE}[1][1]{\STATE\hspace{#1\algorithmicindent}}
+\newcounter{mytempeqncnt}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+	
+\begin{document}
+%
+\title{Survey of brain tumor deep learning}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Remigio Hurtado\inst{1}}
+%
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Universidad Polit\'ecnica Salesiana, Calle Vieja 12-30 y Elia Liut, Cuenca, Ecuador. \email{rhurtadoo@ups.edu.ec}\\
+\url{ups.edu.ec}}
+%
+\maketitle    
+%
+\begin{abstract}
+Recent advancements in deep learning have significantly enhanced brain tumor classification, particularly through microwave imaging techniques. This paper presents the Fine	extendash{}tuned Feature Extracted Deep Transfer Learning (FT	extendash{}FEDTL) model, specifically designed for multi	extendash{}class classification of brain tumors from microwave	extendash{}based images. With the rising incidence of brain cancer, accurate and timely diagnosis is crucial. Traditional imaging methods such as MRI and CT scans can be costly and involve radiation exposure, making microwave imaging a promising non	extendash{}invasive alternative. 
+
+The FT	extendash{}FEDTL model utilizes the InceptionV3 architecture for feature extraction, fine	extendash{}tuned to improve classification performance across six tumor classes: non	extendash{}tumor, single benign tumor, single malignant tumor, two benign tumors, two malignant tumors, and a combination of single benign and single malignant tumors. The model achieves an overall accuracy of 99.65% and an F	extendash{}score of 99.23%. A systematic data preparation strategy, including data augmentation, enhances model robustness. 
+
+The review highlights the importance of deep learning in understanding glioblastoma through histopathological data. Although many studies focus on classification tasks, few integrate diverse biological data, which could provide deeper insights into tumor behavior. The findings emphasize the need for standardized methodologies and robust validation techniques in machine learning studies related to brain tumors. In conclusion, the FT	extendash{}FEDTL model showcases the transformative potential of deep learning in brain tumor diagnostics, promising enhanced accuracy and efficiency in clinical settings. Future research should explore the integration of multimodal data to further improve classification and prognostic capabilities.
+\end{abstract}
+
+\begin{keywords}
+brain tumor, deep learning, microwave imaging, classification model, glioblastoma
+\end{keywords}
+
+\section{Introduction}
+The classification of brain tumors using advanced imaging techniques has become increasingly vital due to the rising incidence of these malignancies globally. The microwave brain imaging (MBI) system has emerged as a promising tool for early detection and classification of brain tumors, leveraging its non	extendash{}invasive nature and cost	extendash{}effectiveness compared to conventional imaging modalities like MRI and CT scans. However, the manual interpretation of these images poses significant challenges for radiologists, necessitating the development of automated systems to enhance diagnostic accuracy and efficiency. Recent studies have shown that deep learning techniques, particularly convolutional neural networks (CNNs), are capable of significantly improving the classification of brain tumors by efficiently extracting relevant features from complex medical images \cite{Vivian_2024}.
+
+The complexity of medical images and the need for robust models that can generalize well across different datasets presents a substantial challenge. This situation has led to the exploration of transfer learning approaches, where pretrained models are fine	extendash{}tuned for specific tasks. The Fine	extendash{}tuned Feature Extracted Deep Transfer Learning Model (FT	extendash{}FEDTL) stands out in this context, integrating the InceptionV3 architecture to enhance feature extraction capabilities while addressing issues related to imbalanced datasets through augmentation techniques. This model has demonstrated exceptional performance, achieving an accuracy of 99.65%, alongside high precision and recall rates across multiple tumor classifications \cite{Amran_2024}.
+
+The growing need for accurate and timely diagnosis of brain tumors is underscored by the rising incidence of brain cancer worldwide, which has been reported as a significant cause of cancer	extendash{}related deaths \cite{Amran_2024}. Traditional imaging techniques, while effective, can be costly and pose risks due to radiation exposure \cite{Chun_2025}. In contrast, microwave imaging offers a promising alternative due to its non	extendash{}invasive nature and lower associated risks. The FT	extendash{}FEDTL model's reliance on the InceptionV3 architecture for feature extraction allows it to leverage pre	extendash{}trained weights to enhance tumor classification accuracy, achieving remarkable performance metrics that highlight its capability in distinguishing between different tumor classes effectively.
+
+Furthermore, the significance of data augmentation and balancing techniques in improving model performance cannot be overstated. By generating a balanced dataset through augmentation methods, the FT	extendash{}FEDTL model is trained on a more representative sample, reducing biases that may arise from imbalanced data distributions. This approach enhances the model's generalization capabilities and contributes to a more reliable classification process, which is critical in clinical settings where decision	extendash{}making is based on model predictions \cite{Kashfia_2023}.
+
+In addition to classification, the segmentation of tumors from medical images plays a pivotal role in the diagnostic process, influencing treatment planning and monitoring. Advanced methods such as UNet and its variants have been widely adopted for segmentation tasks due to their ability to produce high	extendash{}quality segmentation maps. These models utilize skip connections to retain spatial information, thus improving tumor boundary delineation. The integration of attention mechanisms within segmentation frameworks has further refined performance by allowing models to focus on relevant features while suppressing noise \cite{Longfeng_2023}. Nevertheless, challenges remain in handling variability in tumor appearance and noise in imaging data, complicating accurate segmentation \cite{Istiak_2024}.
+
+The importance of developing standardized methodologies in machine learning applications for brain tumor classification is evident. This includes a clear reporting of data acquisition processes, model training, and evaluation techniques. Future studies should utilize publicly available datasets alongside locally collected data to enhance the robustness and applicability of their models across different populations \cite{Chun_2025}. Moreover, the integration of clinical parameters with imaging data has been shown to significantly enhance predictive performance. For instance, multimodal models that combine clinical features with MRI	extendash{}derived imaging characteristics demonstrate superior performance in predicting patient outcomes compared to single	extendash{}modality models \cite{Tomoki_2024}.
+
+Moreover, the application of the FT	extendash{}FEDTL model in clinical settings could revolutionize the current diagnostic landscape, providing radiologists with accurate, rapid assessments that assist in clinical decision	extendash{}making. The model's ability to accurately classify and differentiate between various brain tumor types enhances the quality of care and patient management strategies. Thus, the FT	extendash{}FEDTL model represents a significant advancement in the intersection of artificial intelligence and medical imaging, promising to improve diagnostic outcomes for patients with brain tumors.
+
+In conclusion, the FT	extendash{}FEDTL model exemplifies the transformative potential of deep learning in the classification and segmentation of brain tumors. Its high accuracy, precision, and recall, alongside its adaptability to diverse datasets, position it as a valuable asset in modern medical imaging practices. As the field continues to evolve, ongoing research efforts must address existing challenges, refine algorithms, and explore innovative solutions to improve diagnostic accuracy and patient outcomes in oncology, ultimately enhancing the capabilities of healthcare professionals in diagnosing complex conditions such as glioblastoma. The advancement of automated systems not only streamlines the diagnostic process but also significantly contributes to improving patient care and therapeutic strategies in neuro	extendash{}oncology \cite{Istiak_2024}.
+
+The key contributions of our study can be summarized as follows: 
+
+\begin{itemize}
+    \item \textbf{Thorough Review of the State of the Art}: Detailed analysis and synthesis of the most relevant and recent contributions in the existing literature.
+    \item \textbf{Structured Methodology Based on CRISP	extendash{}DM}: Application of a standard methodology to guide the data mining process, including phases from problem understanding to knowledge representation generation.
+    \item \textbf{Advanced Machine Learning Models}: Use of Latent Dirichlet Allocation (LDA) to identify and categorize latent topics and development of a recommendation system based on the document	extendash{}topic matrix, in order to identify the most relevant topics and the most important associated documents.
+    \item \textbf{Generation of Synthesized Knowledge}: Creation of textual summaries and visualization of relationships between topics and documents to enhance understanding.
+    \item \textbf{Comprehensive and Understandable Reports}: Integration of representations into detailed reports that combine text and figures to provide a clear and complete view of the analysis.
+\end{itemize}
+
+In the remainder of the document, the following is presented: The development methodology of this study, then, the evaluation in the field, the topics: Deep Learning Glioblastoma, Deep Learning Tumor Classification, Deep Learning Segmentation, Deep Learning Oncology,  subsequently, the trends in brain tumor deep learning, related works and original contributions, and finally, the conclusions.
+\section{Methodology}
+
+Our methodology is designed to ensure a comprehensive and systematic analysis of scientific literature. The methodology used in this study builds on our previous work, including a methodology that leverages machine learning and natural language processing techniques \cite{Hurtado2023}, and a novel method for predicting the importance of scientific articles on topics of interest using natural language processing and recurrent neural networks \cite{Lopez2024}. The process is structured into three phases: data preparation, topic modeling, and the generation and integration of knowledge representations. Each phase is essential for transforming raw text data into meaningful insights, and the detailed parameters and algorithm are explained below. The table \ref{tabDescription} describes the parameters for understanding the overall process and algorithm. The high-level process is presented in Fig. \ref{fig:Methodology}, and the detailed algorithm is outlined in Table \ref{tab:Algorithm}.\\ 
+
+In the data preparation phase, we focus on extracting and cleaning text from scientific documents using natural language processing (NLP) techniques. This phase involves several steps to ensure that the text data is ready for analysis. First, text is extracted from the documents, and non-alphabetic characters that do not add value to the analysis are removed. Next, the text is converted to lowercase, and stopwords (common words that do not contribute much meaning) are removed. We then apply lemmatization, which transforms words to their base form (e.g., "running" becomes "run"). Each document is tokenized (split into individual words or terms), and n-grams (combinations of words) are identified to find common terms. We generate a unified set of common terms, denoted as $TE$, which includes both the terms extracted from the documents and basic terms relevant to any field of study, such as [Fundamentals, Evaluation of Solutions, Trends]. Finally, each document is vectorized with respect to $TE$, resulting in the Document-Term Matrix (DTM).\\
+
+The DTM is a crucial component for topic modeling. It is a matrix where the rows represent the documents in the corpus, and the columns represent the terms (words or n-grams) extracted from the corpus. Each cell in the matrix contains a value indicating the presence or frequency of a term in a document. This structured representation of the text data allows us to apply machine learning techniques to uncover hidden patterns.\\
+
+In the topic modeling phase, we use Latent Dirichlet Allocation (LDA), a popular machine learning technique for identifying topics within a set of documents. By applying LDA to the DTM, we transform the matrix into a space of topics. Specifically, LDA provides us with two key matrices: the Topic-Term Matrix ($\beta$) and the Document-Topic Matrix ($\theta$). The Topic-Term Matrix ($\beta$) indicates the probability that a term is associated with a specific topic, while the Document-Topic Matrix ($\theta$) indicates the probability that a document belongs to a specific topic.
+
+To enhance this approach, we integrate predefined topic representations and refine document-topic assignments. In addition to extracting topics purely from the document-term matrix (DTM), we incorporate a set of predefined topics, namely [Fundamentals, Evaluation of Solutions, Trends], which are represented using a predefined set of keywords generated by a language generation model. This ensures that the model captures both the inherent structure of the dataset and domain-relevant themes. The predefined topics are processed through a keyword extraction function, which selects the most relevant words associated with each topic based on the provided corpus.
+
+To construct a more robust topic representation, we create predefined topic matrices that integrate predefined topic vectors with the most relevant keywords extracted for each topic. These matrices are then normalized and combined with the LDA-generated topic distribution, ensuring a refined alignment of document-topic assignments. By doing so, we mitigate the limitations of purely unsupervised topic modeling, which might generate topics that lack semantic clarity.
+
+Finally, to improve interpretability, we assign meaningful names to the discovered topics by combining the highest-probability terms from the topic-term matrix ($\beta$). Using a language generation model, we generate concise and descriptive topic names, ensuring that each topic is easily understandable. This process results in a refined set of topics ($T$), the most relevant terms ($K$), and a topic-term graph ($G_{tk}$) that illustrates relationships between topics and key terms. This methodology enhances the effectiveness of topic modeling by integrating both machine learning and domain-specific knowledge, leading to a more structured and meaningful representation of the analyzed corpus.
+
+The final phase involves the generation and integration of knowledge representations, which include summaries, keywords, and interactive visualizations. For each topic $t$ in $T$, we identify the $N$ most relevant documentsâ€”those with the highest probabilities in $\theta$. This set, $D_t$, represents the documents most closely related to each topic. We then generate summaries of these documents, each with a maximum of $W_b$ words, using a language generation model. These summaries include references to the most relevant documents, which are added to the set $R_d$ if they are not already included. We also integrate all the summaries and generate $J$ suggested keywords using a language generation model. Additionally, we create interactive graphs from the $G_{tk}$ graph, showcasing nodes and relationships between the topics and terms, and highlighting significant connections.We also integrate all the summaries and generate $J$ suggested keywords using a language generation model. Additionally, the topic titles were improved based on the generated summaries using a language generation model, ensuring that the final topic names more accurately reflect the summarized content.
+\\
+
+This methodology provides a clear, structured approach to analyzing scientific literature, leveraging advanced NLP and machine learning techniques to generate useful and comprehensible knowledge representations. This is the methodology used in the development of this study, which presents the fundamentals, solution evaluation techniques, trends, and other topics of interest within this field of study. This structured approach ensures a thorough review and synthesis of the current state of knowledge, providing valuable insights and a solid foundation for future research.
+
+\begin{table*}[!h]
+	\caption{\centering Description of parameters of the proposed methodology}
+	\resizebox{\textwidth}{!}{ % Ajusta el ancho de la tabla al texto
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Parameter} & \textbf{Description}                                                            \\ \hline
+			$T$                  & Set of topics to be generated with the LDA model. \\ \hline
+			$\#T$                & Cardinality of $T$. That is, the number of topics (dimensions).                                    \\ \hline
+			$K$                  & Set of common terms with the highest probability in topic $t$ used to label that topic. \\ \hline
+			$\#K$ 				 & Cardinality of $K$.                                         \\ \hline
+			$W_{t}$   			 & Maximum number of words for combining the common terms of topic $t$ into a new topic name.\\ \hline
+			$N$                  & Number of the most relevant documents to generate a summary of topic $t$.\\ \hline
+			$W_b$                & Maximum number of words to generate a summary of the list of $N$ most related documents to topic $t$.\\ \hline
+			$J$                  & Number of suggested keywords to be generated as knowledge representation.\\ \hline
+			$W_k$ 				 & Number of keywords selected by language generation model from the LDA-generated words to construct the predefined matrix. \\ \hline
+		\end{tabular}
+	}
+	\label{tabDescription}
+\end{table*}
+
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/method.png}
+	\caption{Methodology for the generation of knowledge representations}
+	\label{fig:Methodology}
+\end{figure*}
+
+%Actual
+\begin{figure*}[!h]
+	\centering
+	\resizebox{\textwidth}{!}{ % Ajusta el ancho de la tabla a \textwidth
+		\begin{tabular}{l}
+			\hline
+			\textbf{General Algorithm} \\
+			\hline
+			\textbf{Input:} Field of study, Scientific articles collected from virtual libraries, $\#T$, $\#K$, $W_{t}$, $N$, $W_b$, $J$, $W_k$\\
+			\hline
+			\textbf{Phase 1: Data Preparation with Natural Language Processing (NLP)} \\
+			\quad a. Extract of text from documents. \\
+			\quad b. Remove non-alphabetic characters that do not add value to the analysis. \\
+			\quad c. Convert to lowercase and remove stopwords. \\
+			\quad d. Apply lemmatization to transform words to their base form. \\
+			\quad e. In each document, tokenize and identify n-grams to identify common terms (words or n-grams). \\
+			\quad f. Unified generation of common terms of all documents. Where $TE$ is the unified set of common terms.\\
+			\quad g. Add in $TE$ the basic terms for any field of study, such as: [Fundamentals, Evaluation of Solutions, Trends]. \\
+			\quad h. Vectorize each document with respect to $TE$ and generate Document-Term Matrix (DTM).\\
+			\quad \textbf{Output:} For each document [title, original text, common terms], and Document-Term Matrix (DTM)\\
+			\textbf{Phase 2: Topic Modeling whit Machine Learning} \\
+			\quad \textbf{Input:} Document-Term Matrix (DTM) \\
+			\quad a. Apply Latent Dirichlet Allocation (LDA) to transform the DTM Matrix into a space of $\#T$ topics (dimensions).\\
+			\quad b. Obtain the Topic-Term Matrix ($\beta$) that indicates the probability that a term is generated by a specific topic.\\ 
+			\quad c. Obtain the Document-Topic Matrix ($\theta$) that indicates the probability that a document belongs to a specific topic.\\
+			\quad d. Generate predefined topic representations using language generation model by sending the LDA-generated words and selecting $W_k$ keywords for each predefined topic.\\
+			\quad e. Construct predefined matrices by combining predefined topic vectors with the $W_k$ selected keywords.\\
+			\quad f. Normalize and combine the predefined matrices with the LDA-generated topic distribution to refine document-topic assignments, resulting in the new Matrix ($\beta$).\\
+			\quad g. For each unknown $t$ topic in $\beta$, assign a name or label to the $t$ topic by combining the $\#K$ highest probability\\
+			\quad \quad common terms in $\beta$ associated with that $t$ topic. This generates: \\
+			\quad \quad The $T$ Set with the $\#T$ most relevant topics. \\
+			\quad \quad The $K$ Set with the $\#K$ most relevant terms. \\
+			\quad \quad The $G_{tk}$ Graph of the relationships between the most relevant topics ($T$) and the most relevant terms ($K$). \\
+			\quad h. For each topic $t$ in $T$, modify topic $t$ by combining the common terms of $t$ into a new topic name with at most \\
+			\quad \quad $W_{t}$ words using a language generation model.\\
+			\quad \textbf{Output:} Relevant Topics ($T$), Topic-Term Matrix ($\beta$), Document-Topic Matrix ($\theta$) \\
+			\textbf{Phase 3: Generation and Integration of Knowledge Representations} \\
+			\quad \textbf{Input:} Relevant Topics $T$, Document-Topic Matrix ($\theta$) \\
+			\quad \textbf{3.1: Knowledge representations through summaries and keywords}\\
+			\quad \quad a. For each $t$ topic in $T$, obtain its $N$ most relevant documents, i.e., those with the highest probabilities in $\theta$. \\
+			\quad \quad \quad Thus, $D_t$ represents the set of documents most related to each topic $t$.\\
+			\quad \quad b. For each topic $t$ in $T$, and from $D_t$ generate a summary of the list of documents most related to that topic $t$ with \\
+			\quad \quad \quad at most $W_b$ words using a language generation model. \\
+			\quad \quad c. Incorporate into the summary the text citing references to the most relevant documents. Add these references to the \\ 
+			\quad \quad \quad set $R_d$, which will contain all cited references, including new references if they have not been previously included.\\
+			\quad \quad d. Integrate all the summaries and from them generate $J$ suggested keywords using a language generation model.\\
+			\quad \quad e. Improve topic titles with a language generation model.\\
+			\quad \textbf{3.2: Knowledge representations through knowledge visualizations with interactive graphs}\\
+			\quad \quad a. From the $G_{tk}$ graph, generate an interactive graph with nodes and relationships between the topics $T$\\
+			\quad \quad and the $K$ most relevant terms.\\
+			\quad \quad b. Highlight the connections between the topics $T$ and the $K$ most relevant terms.\\
+			\quad \textbf{3.3: Integration of Knowledge Representations}\\
+			\hline
+			\textbf{Output:} Knowledge Representations \\
+			\hline
+		\end{tabular}
+	}
+	\caption{\centering General algorithm of the methodology incorporating natural language processing, machine learning techniques and language generation models}
+	\label{tab:Algorithm}
+\end{figure*}
+
+\FloatBarrier
+
+
+\section{Fundamental of brain tumor deep learning}
+Recent advancements in deep learning have significantly impacted the field of brain tumor classification, particularly through the application of microwave imaging techniques. This paper introduces a Fine-tuned Feature Extracted Deep Transfer Learning (FT-FEDTL) model designed for multi-class classification of brain tumors from microwave-based images. The need for accurate and timely diagnosis of brain tumors is critical, given the rising incidence of brain cancer worldwide, which has been reported to be the tenth most common cause of cancer-related deaths \cite{Amran_2024}. Traditional imaging techniques, such as MRI and CT scans, while effective, can be costly and pose risks due to radiation exposure \cite{Chun_2025}. In contrast, microwave imaging offers a promising alternative due to its non-invasive nature and lower associated risks \cite{Amran_2024}.
+
+The proposed FT-FEDTL model leverages the InceptionV3 architecture for feature extraction, which is fine-tuned to improve classification performance across six tumor classes: non-tumor, single benign tumor, single malignant tumor, two benign tumors, two malignant tumors, and a combination of single benign and single malignant tumors. The model's effectiveness stems from its ability to automatically extract features and classify images with high accuracy, achieving an overall accuracy of 99.65% and an F-score of 99.23% \cite{Amran_2024}. The methodology involves a systematic approach to data preparation, which includes data augmentation techniques to balance the dataset, thereby enhancing model robustness and performance \cite{Amran_2024}.
+
+In the context of existing literature, several studies have utilized deep learning models for brain tumor classification, demonstrating varying degrees of success. For instance, previous models have achieved accuracies ranging from 82.89% to 98.91% depending on the dataset and the complexity of the classification task \cite{Amran_2024}. However, many of these models have relied on small sample sizes or have not effectively addressed multi-class classification challenges, often defaulting to binary classification \cite{Chun_2025}. The FT-FEDTL model addresses these gaps by employing a larger and more diverse dataset, which significantly contributes to its superior performance in classifying brain tumors.
+
+The FT-FEDTL model is particularly noteworthy for its use of transfer learning, which allows it to adapt the knowledge gained from a pretrained model to achieve better results on the specific task of brain tumor classification. This approach not only reduces the computational resources required but also enhances the model's ability to generalize across different tumor types and sizes \cite{Amran_2024}. The architecture incorporates fine-tuning techniques that optimize the performance of the model, ensuring that it can discern subtle differences between tumor classes that may not be evident in traditional imaging analyses \cite{Amran_2024}.
+
+Moreover, the results obtained from the FT-FEDTL model highlight the importance of using microwave imaging as a viable diagnostic tool. The model's ability to classify tumors with high precision and recall can significantly aid radiologists and medical practitioners in making informed decisions about treatment strategies. With the aid of advanced deep learning techniques, the FT-FEDTL model promises to enhance the diagnostic process and improve patient outcomes in the realm of neuro-oncology.
+
+In conclusion, the FT-FEDTL model represents a significant advancement in the classification of brain tumors using microwave imaging. By integrating deep learning methodologies with effective data preprocessing and augmentation techniques, the model achieves outstanding classification performance while addressing the challenges associated with traditional imaging modalities. Future research should focus on validating these findings in clinical settings and exploring the integration of additional biological data to further enhance the model's robustness and applicability in real-world scenarios.
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\textwidth]{Figures/lda_topic_graph.png}
+\caption{Grafo de relaciones temáticas generado mediante LDA, donde los nodos representan temas identificados y sus palabras clave asociadas. La palabra clave central conecta los temas, y las palabras compartidas aparecen enlazadas a múltiples etiquetas según su relevancia en el modelo. Los pesos de los enlaces reflejan la importancia de cada término dentro de su tópico.}
+\end{figure}
+\section{Evaluation of brain tumor deep learning}
+Recent advancements in machine learning (ML) and deep learning (DL) have shown promising potential in the field of brain tumor histopathology, particularly for glioblastoma (GBM). This systematic review highlights the emerging trend of utilizing ML/DL techniques to enhance the understanding of GBM through the analysis of histopathological data. Despite the rapid evolution of these technologies, their application in GBM research remains relatively nascent, with few studies effectively integrating bioinformatics and histopathology data to uncover the complex pathogenesis of the disease. 
+
+The review encompassed 54 eligible studies sourced from PubMed and ScienceDirect, focusing specifically on how ML/DL methodologies have been employed to analyze GBM histopathology. It was observed that while a significant portion of studies utilized histological data, only a few successfully combined these with other -omics data to provide deeper insights into GBM. Most studies concentrated on classification tasks, primarily distinguishing between tumor grades and subtypes, utilizing standard ML classifiers such as Support Vector Machines (SVM), k-nearest neighbors (kNN), and various convolutional neural network (CNN) architectures like ResNet and U-Net \cite{Chun_2025}. 
+
+The findings indicate a clear inclination towards using SVM and ResNet-based models, which have become prevalent in GBM-related research due to their effectiveness in extracting complex features from histopathological images \cite{Chun_2025}. However, many studies lacked rigorous validation methodologies, leading to concerns regarding reproducibility and generalizability. For instance, a significant number of studies did not specify how their datasets were split for training and evaluation, which is a critical aspect of ensuring model robustness. Additionally, only a few studies reported using independent datasets for validation, which is essential for assessing the real-world applicability of the developed models \cite{Chun_2025}.
+
+The systematic review found that while many studies employed typical analyses focusing on histopathological data alone, there is a growing trend towards "unique analyses" that incorporate additional biological data. These unique analyses have demonstrated improved model performance, suggesting that integrating various data types can yield a more comprehensive understanding of GBM pathology. For instance, studies that correlated histological features with genomic data have shown promise in enhancing classification accuracy and providing insights into tumor behavior and treatment responses \cite{Chun_2025}. 
+
+The review emphasizes the need for standardization in reporting methodologies and evaluation metrics in ML/DL studies related to GBM. Clearly outlining data sources, training protocols, and evaluation strategies will facilitate collaboration and the development of more robust models. Furthermore, as the field advances, there is a pressing need for collaborative efforts to design comprehensive models that can effectively integrate diverse biological and histopathological data, thus overcoming the limitations posed by current methodologies \cite{Chun_2025}. 
+
+In conclusion, the systematic review underscores the potential of ML/DL techniques in revolutionizing brain tumor research, particularly in understanding GBM. By effectively combining histopathological data with genomic and proteomic information, researchers can develop more accurate predictive models that could significantly impact clinical outcomes. Future studies must prioritize transparency in methodology and embrace collaborative approaches to drive forward the integration of ML/DL in GBM research, ensuring that these advancements translate into improved patient care and outcomes.
+\section{Deep learning glioblastoma}
+The application of deep learning (DL) techniques in the classification of glioblastoma (GBM) has evolved significantly, demonstrating potential for enhancing diagnostic accuracy and prognostic predictions. Glioblastoma is recognized as a highly malignant brain tumor with a median overall survival of approximately 15 to 18 months, and the tumor's complex heterogeneity presents substantial challenges in effective treatment strategies \cite{Chun_2025}. Recent advancements in machine learning (ML) and DL have allowed for more sophisticated analyses of histopathological images, integrating molecular data to provide deeper insights into tumor biology \cite{Tomoki_2024}.
+
+Despite the promise of DL in tumor classification, its application in GBM research has been relatively limited compared to other cancer types. Only a small fraction of studies have effectively combined histological data with genomic and proteomic information, which is crucial for understanding the multifaceted nature of GBM \cite{Chun_2025}. The majority of studies have focused primarily on using conventional features from histopathological images, often neglecting the integration of additional biological context. This gap highlights the need for more comprehensive approaches that utilize multimodal data for improving classification and prognostic capabilities.
+
+The systematic review conducted indicated that out of the numerous studies analyzed, a significant number employed convolutional neural networks (CNNs), particularly variations of ResNet and U-Net, for their robustness in image segmentation and classification tasks \cite{Tomoki_2024}. These architectures have shown to be particularly effective in extracting relevant features from histopathological images, enabling the differentiation of GBM from lower-grade gliomas and other brain tumors. However, the review also pointed out a concerning trend: many studies did not adequately report their methodologies regarding data sourcing and evaluation metrics, which raises concerns about the reproducibility and generalizability of their findings \cite{Chun_2025}.
+
+Moreover, the integration of clinical parameters with imaging data has been shown to enhance predictive performance significantly. In a recent study, a multimodal model combining clinical features and MRI-derived imaging features demonstrated superior performance in predicting the Karnofsky performance status (KPS) score six months post-surgery compared to models using a single modality \cite{Tomoki_2024}. This suggests that incorporating diverse data types can lead to more personalized treatment approaches and better patient outcomes.
+
+The findings underscore the importance of developing standardized methodologies in ML/DL applications for GBM research. This includes a clear reporting of data acquisition processes, model training, and evaluation techniques. Future studies should aim to utilize publicly available datasets alongside locally collected data to improve the robustness and applicability of their models across different populations \cite{Chun_2025}. 
+
+In conclusion, while there is a growing interest in applying DL techniques to glioblastoma classification, significant work remains to ensure that these methodologies are effectively utilized to provide actionable insights into tumor biology and patient prognosis. The integration of multimodal data sources is critical for advancing the field and ensuring that the findings can be translated into clinical practice, ultimately improving outcomes for patients suffering from this aggressive form of brain cancer.
+
+.
+\section{Deep learning tumor classification}
+The classification of brain tumors using advanced imaging techniques has become increasingly vital due to the rising incidence of these malignancies globally. The microwave brain imaging (MBI) system has surfaced as a promising tool for early detection and classification of brain tumors, leveraging its non-invasive nature and cost-effectiveness compared to conventional imaging modalities like MRI and CT scans. However, the manual interpretation of these images poses significant challenges for radiologists, necessitating the development of automated systems to enhance diagnostic accuracy and efficiency. Recent studies have shown that deep learning techniques, particularly convolutional neural networks (CNNs), are capable of significantly improving the classification of brain tumors by efficiently extracting relevant features from complex medical images \cite{Vivian_2024}.
+
+The challenge lies in the complexity of the images and the need for robust models that can generalize well across different datasets. This has led to the exploration of transfer learning approaches, where pretrained models are fine-tuned for specific tasks. The Fine-tuned Feature Extracted Deep Transfer Learning Model (FT-FEDTL) stands out in this context, integrating the InceptionV3 architecture to enhance feature extraction capabilities while addressing issues related to imbalanced datasets through augmentation techniques. This model has demonstrated exceptional performance, achieving an accuracy of 99.65%, alongside high precision and recall rates across multiple tumor classifications \cite{Amran_2024}.
+
+The significant advantage of using the FT-FEDTL model is its ability to classify tumors into multiple categories, which is crucial for tailored treatment planning. The use of deep learning not only streamlines the classification process but also reduces the time required for diagnosis, thereby improving patient outcomes. Furthermore, the architecture's design allows for the integration of additional layers that can be fine-tuned, ensuring that the model adapts effectively to the unique characteristics of the MBI data \cite{Vivian_2024}.
+
+Another important aspect of the FT-FEDTL model is its robustness against variations in image quality and background noise, which are common challenges in medical imaging. The incorporation of advanced data balancing techniques and augmentation strategies mitigates the risks associated with overfitting, allowing for better generalization to unseen data. This is particularly relevant in medical applications, where the diversity of imaging conditions can significantly impact diagnostic performance. The results indicate that the FT-FEDTL model not only meets but exceeds the performance benchmarks set by traditional methods, showcasing its potential as a reliable tool for medical professionals \cite{Amran_2024}.
+
+Moreover, the application of the FT-FEDTL model in clinical settings could revolutionize the current diagnostic landscape, providing radiologists with accurate, rapid assessments that assist in clinical decision-making. The model's ability to accurately classify and differentiate between various brain tumor types enhances the quality of care and patient management strategies. Thus, the FT-FEDTL model represents a significant advancement in the intersection of artificial intelligence and medical imaging, promising to improve diagnostic outcomes for patients with brain tumors.
+
+In conclusion, the FT-FEDTL model exemplifies the transformative potential of deep learning in the classification of brain tumors through microwave imaging. Its high accuracy, precision, and recall, alongside its adaptability to diverse datasets, positions it as a valuable asset in the ongoing battle against brain cancer. Future research should focus on further refining this model and exploring its applicability in real-world clinical scenarios, ultimately aiming to enhance patient care and therapeutic strategies in oncology \cite{Vivian_2024}.
+
+.
+\section{Deep learning segmentation}
+The analysis of tumor segmentation has become increasingly critical in biomedical imaging, particularly for the accurate diagnosis and treatment planning of brain tumors. This process involves identifying and counting cells, a task that serves as a pivotal hallmark in evaluating tumor density, which is closely linked to clinical outcomes and prognostics \cite{Qianqian_2021}. Accurate cell density estimation aids in defining biopsy targets, determining tumor grades, and making informed therapeutic decisions \cite{Qianqian_2021}. Brain tumors, characterized by their heterogeneous and aggressive nature, pose significant challenges, with a survival rate for malignant types around 35% \cite{Qianqian_2021}. 
+
+The conventional methods of tumor analysis, particularly using magnetic resonance imaging (MRI) and hematoxylin and eosin (H&E) staining, have limitations, including the inaccuracy of tumor boundary detection and the lengthy process of obtaining microscopic reviews \cite{Qianqian_2021}. Recent advancements in imaging technologies, such as stimulated Raman scattering (SRS) microscopy, have shown promise in overcoming these limitations. SRS provides real-time imaging of fresh tumor samples, allowing for rapid identification of critical tumor characteristics \cite{Qianqian_2021}. However, the weak contrast of SRS images compared to histological modalities like H&E staining complicates cell counting, necessitating advanced computational techniques to enhance accuracy \cite{Qianqian_2021}.
+
+To address these challenges, a deep learning-based framework for cell counting and segmentation from SRS images has been proposed. This framework leverages a modified U-Net model, which is adept at segmenting cells with minimal annotation requirements \cite{Qianqian_2021}. By employing a split-and-combine strategy, the large size of high-resolution SRS images can be managed effectively, allowing for efficient cell segmentation and subsequent counting through morphological analysis techniques like distance transform and watershed segmentation \cite{Qianqian_2021}. The integration of K-means clustering for H&E images provides a reference point for evaluating cell counting accuracy, yielding a high correlation between SRS and H&E segmentation results, with an AUC exceeding 98% \cite{Qianqian_2021}.
+
+Furthermore, the application of machine learning and artificial intelligence has proven beneficial in enhancing the precision of cell counting from SRS images. The proposed framework demonstrates that reliable cell counting can be achieved despite the inherent noise and heterogeneity present in SRS image data. This advancement not only aids in surgical planning but also enhances the overall diagnostic process for brain tumors, potentially improving patient outcomes \cite{Qianqian_2021}.
+
+In conclusion, the development of an advanced cell counting framework utilizing deep learning methodologies for SRS images marks a significant progression in the field of tumor segmentation analysis. By addressing the limitations of traditional imaging techniques and employing innovative computational methods, this research paves the way for more accurate and efficient diagnostic practices in the management of brain tumors, thereby contributing to improved therapeutic strategies and patient care \cite{Qianqian_2021}.
+\section{Deep learning oncology}
+The early detection of cancer is critical for effective treatment and improved patient outcomes. Medical imaging combined with advanced deep learning techniques has shown significant promise in automating cancer detection, addressing the limitations of traditional manual interpretation by radiologists. This automated approach is essential given the subjective and labor-intensive nature of manual assessments, which often lead to delays and errors in diagnosis. Recent research has explored various methodologies, focusing on multiple cancer types, including breast, lung, prostate, and brain cancers, among others \cite{Istiak_2024}.
+
+Deep learning algorithms, particularly convolutional neural networks (CNNs), have become the cornerstone of automated image analysis in oncology. These networks excel at extracting complex patterns from medical images, providing clinicians with tools to enhance diagnostic accuracy. Techniques such as transfer learning, where pre-trained models are adapted to specific cancer detection tasks, have been employed to improve performance, especially in scenarios with limited labeled data. This approach has proven beneficial in leveraging existing knowledge to tackle new problems, thus enhancing model reliability and accuracy \cite{Longfeng_2023}.
+
+The segmentation of tumors from medical images is a pivotal step in the diagnostic process, influencing treatment planning and monitoring. Advanced methods such as UNet and its variants have been widely adopted for this purpose, owing to their ability to produce high-quality segmentation maps. These models utilize skip connections to retain spatial information, thereby improving the delineation of tumor boundaries. The integration of attention mechanisms within segmentation frameworks has further refined performance by allowing models to focus on relevant features while suppressing noise \cite{Longfeng_2023}. However, challenges remain, particularly in handling the variability in tumor appearance and the presence of noise in imaging data, which complicates accurate segmentation \cite{Istiak_2024}.
+
+In recent advancements, hybrid models that incorporate both deep learning and traditional machine learning techniques are emerging to tackle the complexities of cancer detection. These models aim to combine the strengths of different methodologies, thereby improving the robustness and interpretability of predictions. For instance, the use of context-guided attention conditional random fields (CGA-CRF) has been proposed to enhance the segmentation capabilities of neural networks by effectively leveraging contextual information from the imaging data. This dual approach not only improves segmentation accuracy but also aids in overcoming issues related to class imbalance in the datasets \cite{Longfeng_2023}.
+
+Despite these advancements, significant challenges persist in the field of automated cancer detection. The imbalanced nature of medical imaging datasets often leads to biased models that inadequately represent minority classes, resulting in high false negative rates. Additionally, the manual labeling of medical images remains a significant bottleneck, as it requires specialized expertise and is subject to variability among annotators. Therefore, developing robust, automated labeling techniques is crucial for enhancing dataset quality and ensuring comprehensive training for deep learning models \cite{Istiak_2024}.
+
+Future directions in cancer detection research should focus on enhancing model generalization through transfer learning and domain adaptation strategies. These methods will enable models trained on one dataset to perform effectively across varied populations and imaging protocols. Furthermore, the integration of multimodal imaging data—where information from different imaging techniques is combined—offers a promising avenue for improving diagnostic performance through richer feature representations. As the field moves forward, addressing ethical considerations and ensuring patient privacy in data usage will be paramount to the successful implementation of AI-driven solutions in clinical settings \cite{Istiak_2024}.
+
+In conclusion, the synergy between deep learning and medical imaging presents a transformative potential for early cancer detection. Ongoing research efforts must continue to address existing challenges, refine algorithms, and explore innovative solutions to improve diagnostic accuracy and patient outcomes in oncology.
+\section{Trends of brain tumor deep learning}
+Recent advancements in deep learning have significantly enhanced the classification and segmentation of brain tumors from medical images, particularly through the use of microwave brain imaging (MBI). The FT-FEDTL model, which employs a fine-tuned feature-extracted deep transfer learning approach, demonstrates exceptional performance in classifying various types of brain tumors, including benign and malignant forms. This model is particularly relevant in an era where the early detection of brain tumors is crucial for improving patient outcomes. Traditional diagnostic methods often involve tedious manual assessments and can be hindered by the complexity and variability of tumor appearances in medical imaging. The automation of these processes through advanced algorithms can alleviate the workload on healthcare professionals while ensuring a higher degree of accuracy in detection and classification.
+
+The use of microwave imaging technology offers several advantages over conventional imaging modalities such as MRI and CT scans, including non-invasiveness and reduced exposure to ionizing radiation. This aspect is vital as it minimizes potential health risks, particularly in vulnerable populations \cite{Kashfia_2023}. Moreover, the FT-FEDTL model's reliance on the InceptionV3 architecture for feature extraction allows it to leverage pre-trained weights to enhance the accuracy of tumor classification. This transfer learning technique enables the model to achieve remarkable performance metrics, including an accuracy of 99.65%, precision of 99.48%, and a recall of 99.16%, which highlights its capability in distinguishing between different tumor classes effectively \cite{Amran_2024}.
+
+The study further emphasizes the significance of data augmentation and balancing techniques in improving model performance. By generating a balanced dataset through augmentation methods, the FT-FEDTL model is trained on a more representative sample, reducing biases that may arise from imbalanced data distributions. This approach not only enhances the model's generalization capabilities but also contributes to a more reliable classification process, which is critical in clinical settings where decision-making is based on model predictions \cite{Kashfia_2023}.
+
+Furthermore, the integration of a user-friendly web application for the FT-FEDTL model facilitates its accessibility for medical professionals. This application allows users to upload patient data, obtain initial assessments, and receive detailed segmentation outputs along with confidence scores. The feedback mechanism included in the application enables continuous improvement of the model's performance by incorporating expert evaluations into future training cycles. Such interactive frameworks are essential for fostering trust and reliability in AI-assisted medical diagnosis systems \cite{Kashfia_2023}.
+
+In conclusion, the FT-FEDTL model represents a significant advancement in the automated classification and segmentation of brain tumors from microwave imaging. Its application not only streamlines the diagnostic process but also enhances the accuracy of tumor detection, thereby improving patient care. With continued research and development, these models hold the potential to become integral components of modern medical imaging practices, aiding healthcare professionals in making informed decisions regarding patient treatment options.
+\section{Related works and original contributions of the paper}
+The systematic review by Vong et al. highlights the burgeoning interest and application of machine learning and deep learning techniques in understanding glioblastoma (GBM) through histopathological data analysis. This review synthesizes data from 54 studies, uncovering trends in the deployment of various ML/DL methodologies, particularly the prevalent use of classifiers like SVM and CNN architectures such as ResNet. These insights reveal a growing inclination towards integrating histopathological data with -omics data to deepen the understanding of GBM pathology. Despite the potential, the review points out that many studies lack thorough training and evaluative methodologies, indicating a pressing need for standardized reporting to ensure model robustness and reproducibility in future research \cite{Chun_2025}.
+
+Gunasekaran et al. introduce an innovative hybrid deep learning technique, ConvNet-ResNeXt101, specifically designed for automated segmentation and classification of brain tumors using MRI data. Their method begins with comprehensive data preparation, feature extraction, and employs the Advanced Whale Optimization algorithm to identify the most informative features for image segmentation. By leveraging a benchmark dataset (BRATS 2020), the study exemplifies the effectiveness of deep learning in achieving high accuracy rates (99.27%) for tumor classification with significantly reduced processing times. This contribution enhances the ability to automate brain tumor diagnostics, thus promising greater precision in treatment planning and improved patient outcomes \cite{Subathra_2024}.
+
+Istiak et al. provide a survey of cancer detection techniques utilizing deep learning and medical imaging. Their review encompasses a wide spectrum of cancer types, elucidating various methodologies related to image processing, feature extraction, and machine learning models, highlighting the importance of automated decision-making systems in enhancing diagnostic accuracy. With thorough analysis of 99 research articles, the authors delineate the challenges of existing methodologies and propose future directions aimed at advancing cancer detection techniques. This comprehensive perspective underscores the critical need for robust and automated systems to address limitations in manual interpretations, further contributing to the evolution of early cancer detection practices in oncology \cite{Istiak_2024}.
+
+Collectively, the contributions of these studies underscore the shifting paradigm toward the implementation of deep learning methodologies in medical imaging, particularly for brain tumor diagnostics. They emphasize the integration of diverse data types, the need for standardized methodologies, and the potential of automated systems to augment the capabilities of healthcare professionals in diagnosing complex conditions like GBM. By bridging the gaps in current methodologies and fostering collaborations, these works converge on the shared goal of improving clinical outcomes through enhanced diagnostic tools and techniques in the realm of neuro-oncology. The incorporation of these innovative approaches positions future research to explore the further potential of ML/DL in addressing the challenges of medical imaging and cancer detection more broadly.
+
+\begin{itemize}[label=\textbullet]
+    \item User a machine learning-based methodology to select the most relevant papers, standing out the latest and most cited papers in the area.
+    \item Provides a comprehensive survey on deep learning advancements in brain tumor classification, highlighting the FT-FEDTL model's exceptional accuracy and the benefits of microwave imaging techniques.
+    \item Fundamentals of Brain Tumor Deep Learning introduces a novel deep learning model for classifying brain tumors using microwave imaging, enhancing diagnosis accuracy while minimizing risks associated with traditional imaging methods.
+    \item Evaluation of Brain Tumor Deep Learning highlights the potential of machine learning techniques in understanding glioblastoma through histopathological data, emphasizing the need for integrating diverse data sources for better insights.
+    \item Deep Learning Glioblastoma explores how deep learning improves glioblastoma classification, revealing the importance of combining histological and genomic data to enhance diagnostic and prognostic capabilities.
+    \item Deep Learning Tumor Classification discusses the advantages of microwave imaging for brain tumor detection, emphasizing deep learning's role in automating classification and improving diagnostic efficiency for various tumor types.
+    \item Deep Learning Segmentation presents a framework for tumor cell counting from SRS images using deep learning, significantly enhancing accuracy and efficiency in diagnosing and managing brain tumors.
+    \item Deep Learning Oncology emphasizes the transformative potential of deep learning in cancer detection, improving diagnostic accuracy through automated image analysis and addressing challenges in traditional manual assessments.
+    \item Trends of Brain Tumor Deep Learning focuses on advancements in the FT-FEDTL model for brain tumor classification, showcasing its high accuracy and the benefits of integrating user-friendly applications in clinical settings.
+\end{itemize}
+\section{Conclusions}
+The advancements in deep learning methodologies for brain tumor classification and segmentation signify a transformative shift in medical imaging, enhancing diagnostic accuracy and efficiency. The development of the Fine	extendash{}tuned Feature Extracted Deep Transfer Learning (FT	extendash{}FEDTL) model, utilizing microwave imaging, demonstrates exceptional performance with an accuracy of 99.65%, showcasing the potential of non	extendash{}invasive techniques over traditional imaging modalities. Furthermore, the integration of machine learning with histopathological data, particularly for glioblastoma, highlights the importance of combining diverse data sources to improve diagnostic and prognostic capabilities. The systematic review of existing literature reveals a growing trend towards automated systems that not only streamline the diagnostic process but also address the challenges posed by manual interpretations. These innovations collectively emphasize the necessity for standardized methodologies and robust validation processes to ensure reproducibility and generalizability in clinical applications. As we move forward, continued research should focus on refining these models and exploring their applicability in real	extendash{}world settings, ultimately contributing to improved patient care and outcomes in neuro	extendash{}oncology. The emphasis on user	extendash{}friendly applications further enhances the accessibility and practicality of these advanced deep learning tools, paving the way for their integration into everyday clinical practice.
+\begin{thebibliography}{00}
+    \bibitem{Istiak_2024} Istiak Ahmad and Fahad Alqurashi (2024). Early cancer detection using deep learning and medical imaging: A survey.
+\bibitem{Amran_2024} Amran Hossain and Rafiqul Islam and Mohammad Tariqul Islam and Phumin Kirawanich and Mohamed S. Soliman (2024). FT-FEDTL: A fine-tuned feature-extracted deep transfer learning model for multi-class microwave-based brain tumor classification.
+\bibitem{Vivian_2024} Vivian Akoto-Adjepong; Obed Appiah; Patrick Kwabena Mensah; Peter Appiahene. (2024). TTDCapsNet: Tri Texton-Dense Capsule Network for complex and medical image recognition. PLOS ONE: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0300133
+\bibitem{Longfeng_2023} Longfeng Shen; Yingjie Zhang; Qiong Wang; Fenglan Qin; Dengdi Sun; Hai Min; Qianqian Meng; Chengzhen Xu; Wei Zhao; Xin Song. (2023). Feature interaction network based on hierarchical decoupled convolution for 3D medical image segmentation. PLOS ONE: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0288658
+\bibitem{Tomoki_2024} Tomoki Sasagasako; Akihiko Ueda; Yohei Mineharu; Yusuke Mochizuki; Souichiro Doi; Silsu Park; Yukinori Terada; Noritaka Sano; Masahiro Tanji; Yoshiki Arakawa; Yasushi Okuno. (2024). Postoperative Karnofsky performance status prediction in patients with IDH wild-type glioblastoma: A multimodal approach integrating clinical and deep imaging features. PLOS ONE: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0303002
+\bibitem{Qianqian_2021} Qianqian Zhang; Kyung Keun Yun; Hao Wang; Sang Won Yoon; Fake Lu; Daehan Won. (2021). Automatic cell counting from stimulated Raman imaging using deep learning. PLOS ONE: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254586
+\bibitem{Kashfia_2023} Kashfia Sailunaz; Deniz Bestepe; Sleiman Alhajj; Tansel Ozyer; Jon Rokne; Reda Alhajj. (2023). Brain tumor detection and segmentation: Interactive framework with a visual interface and feedback facility for dynamically improved accuracy and trust. PLOS ONE: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0284418
+\bibitem{Chun_2025} Chun Kiet Vong and Alan Wang and Mike Dragunow and Thomas I-H. Park and Vickie Shim (2025). Brain tumour histopathology through the lens of deep learning: A systematic review.
+\bibitem{Subathra_2024} Subathra Gunasekaran; Prabin Selvestar Mercy Bai; Sandeep Kumar Mathivanan; Hariharan Rajadurai; Basu Dev Shivahare; Mohd Asif Shah. (2024). Automated brain tumor diagnostics: Empowering neuro-oncology with deep learning-based MRI image analysis. PLOS ONE: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0306493.
+\bibitem{b1}
+    Hurtado, Remigio; PicÃ³n, Cristian; MuÃ±oz, Arantxa; Hurtado, Juan.
+    "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing."
+    In Proceedings of Eighth International Congress on Information and Communication Technology.
+    Springer Nature Singapore, Singapore, 2024.
+    \bibitem{b2}
+    Park, Keunheung; Kim, Jinmi; Lee, Jiwoong. 
+    ``Visual Field Prediction using Recurrent Neural Network,'' 
+    \emph{Scientific Reports}, 
+    vol. 9, no. 1, p. 8385, 
+    2019, 
+    https://doi.org/10.1038/s41598-019-44852-6.
+    
+    \bibitem{b3}
+    Xu, M.; Du, J.; Guan, Z.; Xue, Z.; Kou, F.; Shi, L.; Xu, X.; Li, A. 
+    ``A Multi-RNN Research Topic Prediction Model Based on Spatial Attention and Semantic Consistency-Based Scientific Influence Modeling,'' 
+    \emph{Comput Intell Neurosci}, 
+    vol. 2021, 
+    2021, 
+    p. 1766743, 
+    doi: 10.1155/2021/1766743.
+    
+    \bibitem{b4}
+    Kreutz, Christin; Schenkel, Ralf.
+    ``Scientific Paper Recommendation Systems: a Literature Review of recent Publications,''
+    2022/01/03.
+	\bibitem{Hurtado2023} Hurtado, R., et al. "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing." International Congress on Information and Communication Technology. Singapore: Springer Nature Singapore, 2023.
+    \bibitem{Lopez2024} Lopez, A., Dutan, D., Hurtado, R. "A New Method for Predicting the Importance of Scientific Articles on Topics of Interest Using Natural Language Processing and Recurrent Neural Networks." In: Yang, X.S., Sherratt, S., Dey, N., Joshi, A. (eds) Proceedings of Ninth International Congress on Information and Communication Technology. ICICT 2024 2024. Lecture Notes in Networks and Systems, vol 1013. Springer, Singapore. https://doi.org/10.1007/978-981-97-3559-4\_50.
+\end{thebibliography}
+\end{document}

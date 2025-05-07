@@ -1,0 +1,287 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[runningheads]{llncs}
+\titlerunning{Universidad Politecnica Salesiana}
+
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%Âº
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+%
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{cite}
+\usepackage{breqn}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx} % Importa el paquete
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb} 
+\usepackage{array}
+\usepackage{algpseudocode}
+\usepackage{blindtext}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{epstopdf}
+\usepackage{placeins}
+\restylefloat{algorithm}
+\newcommand{\INDSTATE}[1][1]{\STATE\hspace{#1\algorithmicindent}}
+\newcounter{mytempeqncnt}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+	
+\begin{document}
+%
+\title{Survey of ia}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Remigio Hurtado\inst{1}}
+%
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{University Politecnica Salesiana \email{Rhurtadoo@ups.edu.ec}\\
+\url{ups.edu.ec}}
+%
+\maketitle    
+%
+\begin{abstract}
+Our methodology is designed to ensure a comprehensive and systematic analysis of scientific literature. It begins with the meticulous preparation of text data, applying advanced natural language processing (NLP) techniques. Deep learning techniques have significantly advanced the performance of recommender systems (RSs), particularly through collaborative filtering (CF) models. However, traditional models often lack the stochasticity required to create robust, continuous, and structured latent spaces, a feature inherent to Variational Autoencoders (VAEs). This study introduces Variational Deep Matrix Factorization (VDeepMF) and Variational Neural Collaborative Filtering (VNCF), which leverage existing neural architectures while integrating the variational paradigm to enhance the robustness of latent representations. Empirical tests conducted on four datasets demonstrated that VDeepMF notably outperformed traditional DeepMF models across most datasets, except in exceptionally large ones like Netflix. Moreover, the proposed models exhibited significant improvements in training efficiency, requiring fewer epochs to converge compared to baseline counterparts. The results indicate that the innovative integration of variational techniques in CF models represents a promising advancement in the field of recommender systems. Additionally, our evaluation of six prominent matrix factorization models revealed that BiasedMF and BNMF consistently outperform others in prediction accuracy, while NMF excels in novelty. We also explored group recommendations through a neural network model, demonstrating notable improvements in accuracy. This research contributes valuable insights into the design and implementation of effective recommendation systems, paving the way for future advancements in this dynamic field.
+\end{abstract}
+
+\begin{keywords}
+recommender systems, collaborative filtering, variational autoencoders, matrix factorization, group recommendations
+\end{keywords}
+
+\section{Introduction}
+The rapid evolution of artificial intelligence (AI) has fundamentally transformed numerous fields, particularly through the development of sophisticated recommender systems (RSs). These systems leverage user data to generate personalized suggestions, enhancing user engagement across various platforms. However, a significant challenge persists: the ability to effectively handle sparse and high	extendash{}dimensional data while maintaining the accuracy and diversity of recommendations. Traditional collaborative filtering methods, including Deep Matrix Factorization and Neural Collaborative Filtering, often struggle with these issues, leading to suboptimal user experiences.
+
+To address these challenges, researchers have explored innovative solutions that introduce stochasticity into the latent space of deep architectures via Variational Autoencoders (VAEs). This approach allows for the encoding of user	extendash{}item interactions as distributions rather than fixed points, significantly improving model generalization capabilities. The introduction of models such as Variational Deep Matrix Factorization (VDeepMF) and Variational Neural Collaborative Filtering (VNCF) marks a pivotal advancement in this domain. These models not only enhance the robustness of latent representations but also improve training efficiency, requiring fewer epochs to converge compared to traditional models.
+
+The urgency to refine recommendation systems stems from the growing reliance on these technologies by major companies in the digital landscape. As businesses strive to enhance user satisfaction, the need for robust and adaptive recommender systems becomes paramount. The existing literature highlights a gap in addressing the complex relationships within user preferences, which traditional matrix factorization techniques often overlook. This paper aims to fill this gap by providing a comprehensive survey of the current advancements in the field of AI	extendash{}driven recommender systems, particularly focusing on collaborative filtering.
+
+In our study, we present several relevant solutions, including the integration of generative approaches for synthesizing datasets to counteract the effects of data sparsity. Our methodology employs advanced natural language processing techniques to ensure a systematic analysis of scientific literature. This approach facilitates a thorough exploration of various models and their performance across multiple datasets, enabling us to derive meaningful insights into the effectiveness of different algorithms.
+
+The contributions of our research are as follows:
+
+	extendash{} **Exhaustive review of state	extendash{}of	extendash{}the	extendash{}art models**: We analyze and synthesize the most significant contributions in the existing literature, providing a clear understanding of contemporary methodologies.
+	extendash{} **Comparative performance metrics**: We evaluate models based on accuracy, novelty, diversity, and training efficiency, offering a holistic view of their strengths and weaknesses.
+	extendash{} **Identification of gaps and future directions**: We highlight areas in need of further research, including the exploration of hybrid models that combine different methodologies for improved results.
+
+In conclusion, our survey serves as a crucial resource for researchers and practitioners seeking to navigate the complexities of recommender systems in the context of artificial intelligence. By systematically reviewing the advancements and challenges in the field, we aim to pave the way for future research that can further enhance the performance and applicability of collaborative filtering techniques.
+
+\begin{thebibliography}{9}
+\bibitem{Duenas	extendash{}Lerin_2023} Duenas	extendash{}Lerin, et al. 
+\end{thebibliography}
+
+\newpage
+listRefsPaper[ Duenas	extendash{}Lerin_2023 ]
+ The structure of this document is: the body of the document, then the conclusion, and finally the bibliography.
+\section{Methodology}
+
+Our methodology is designed to ensure a comprehensive and systematic analysis of scientific literature. The methodology used in this study builds on our previous work, including a methodology that leverages machine learning and natural language processing techniques \cite{Hurtado2023}, and a novel method for predicting the importance of scientific articles on topics of interest using natural language processing and recurrent neural networks \cite{Lopez2024}. The process is structured into three phases: data preparation, topic modeling, and the generation and integration of knowledge representations. Each phase is essential for transforming raw text data into meaningful insights, and the detailed parameters and algorithm are explained below. The table \ref{tabDescription} describes the parameters for understanding the overall process and algorithm. The high-level process is presented in Fig. \ref{fig:Methodology}, and the detailed algorithm is outlined in Table \ref{tab:Algorithm}.\\ 
+
+In the data preparation phase, we focus on extracting and cleaning text from scientific documents using natural language processing (NLP) techniques. This phase involves several steps to ensure that the text data is ready for analysis. First, text is extracted from the documents, and non-alphabetic characters that do not add value to the analysis are removed. Next, the text is converted to lowercase, and stopwords (common words that do not contribute much meaning) are removed. We then apply lemmatization, which transforms words to their base form (e.g., "running" becomes "run"). Each document is tokenized (split into individual words or terms), and n-grams (combinations of words) are identified to find common terms. We generate a unified set of common terms, denoted as $TE$, which includes both the terms extracted from the documents and basic terms relevant to any field of study, such as [Fundamentals, Evaluation of Solutions, Trends]. Finally, each document is vectorized with respect to $TE$, resulting in the Document-Term Matrix (DTM).\\
+
+The DTM is a crucial component for topic modeling. It is a matrix where the rows represent the documents in the corpus, and the columns represent the terms (words or n-grams) extracted from the corpus. Each cell in the matrix contains a value indicating the presence or frequency of a term in a document. This structured representation of the text data allows us to apply machine learning techniques to uncover hidden patterns.\\
+
+In the topic modeling phase, we use Latent Dirichlet Allocation (LDA), a popular machine learning technique for identifying topics within a set of documents. By applying LDA to the DTM, we transform the matrix into a space of topics. Specifically, LDA provides us with two key matrices: the Topic-Term Matrix ($\beta$) and the Document-Topic Matrix ($\theta$). The Topic-Term Matrix ($\beta$) indicates the probability that a term is associated with a specific topic, while the Document-Topic Matrix ($\theta$) indicates the probability that a document belongs to a specific topic. For each topic in $\beta$, we assign a name by combining the most probable terms associated with that topic. This process results in the set $T$, which contains the most relevant topics, and the set $K$, which contains the most relevant terms. Additionally, we generate a graph $G_{tk}$ to represent the relationships between topics and terms. Using a language generation model, we refine the names of the topics to ensure they are concise and meaningful, with a maximum of $W_{t}$ words.\\
+
+The final phase involves the generation and integration of knowledge representations, which include summaries, keywords, and interactive visualizations. For each topic $t$ in $T$, we identify the $N$ most relevant documentsâ€”those with the highest probabilities in $\theta$. This set, $D_t$, represents the documents most closely related to each topic. We then generate summaries of these documents, each with a maximum of $W_b$ words, using a language generation model. These summaries include references to the most relevant documents, which are added to the set $R_d$ if they are not already included. We also integrate all the summaries and generate $J$ suggested keywords using a language generation model. Additionally, we create interactive graphs from the $G_{tk}$ graph, showcasing nodes and relationships between the topics and terms, and highlighting significant connections.\\
+
+This methodology provides a clear, structured approach to analyzing scientific literature, leveraging advanced NLP and machine learning techniques to generate useful and comprehensible knowledge representations. This is the methodology used in the development of this study, which presents the fundamentals, solution evaluation techniques, trends, and other topics of interest within this field of study. This structured approach ensures a thorough review and synthesis of the current state of knowledge, providing valuable insights and a solid foundation for future research.
+
+\begin{table*}[!h]
+	\caption{\centering Description of parameters of the proposed methodology}
+	\resizebox{\textwidth}{!}{ % Ajusta el ancho de la tabla al texto
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Parameter} & \textbf{Description}                                                            \\ \hline
+			$T$                  & Set of topics to be generated with the LDA model. \\ \hline
+			$\#T$                & Cardinality of $T$. That is, the number of topics (dimensions).                                    \\ \hline
+			$K$                  & Set of common terms with the highest probability in topic $t$ used to label that topic. \\ \hline
+			$\#K$ 				 & Cardinality of $K$.                                         \\ \hline
+			$W_{t}$   			 & Maximum number of words for combining the common terms of topic $t$ into a new topic name.\\ \hline
+			$N$                  & Number of the most relevant documents to generate a summary of topic $t$.\\ \hline
+			$W_b$                & Maximum number of words to generate a summary of the list of $N$ most related documents to topic $t$.\\ \hline
+			$J$                  & Number of suggested keywords to be generated as knowledge representation.\\ \hline
+		\end{tabular}
+	}
+	\label{tabDescription}
+\end{table*}
+
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/method.png}
+	\caption{Methodology for the generation of knowledge representations}
+	\label{fig:Methodology}
+\end{figure*}
+
+%Actual
+\begin{figure*}[!h]
+	\centering
+	\resizebox{\textwidth}{!}{ % Ajusta el ancho de la tabla a \textwidth
+		\begin{tabular}{l}
+			\hline
+			\textbf{General Algorithm} \\
+			\hline
+			\textbf{Input:} Field of study, Scientific articles collected from virtual libraries, $\#T$, $\#K$, $W_{t}$, $N$, $W_b$, $J$\\
+			\hline
+			\textbf{Phase 1: Data Preparation with Natural Language Processing (NLP)} \\
+			\quad a. Extract of text from documents. \\
+			\quad b. Remove non-alphabetic characters that do not add value to the analysis. \\
+			\quad c. Convert to lowercase and remove stopwords. \\
+			\quad d. Apply lemmatization to transform words to their base form. \\
+			\quad e. In each document, tokenize and identify n-grams to identify common terms (words or n-grams). \\
+			\quad f. Unified generation of common terms of all documents. Where $TE$ is the unified set of common terms.\\
+			\quad g. Add in $TE$ the basic terms for any field of study, such as: [Fundamentals, Evaluation of Solutions, Trends]. \\
+			\quad h. Vectorize each document with respect to $TE$ and generate Document-Term Matrix (DTM).\\
+			\quad \textbf{Output:} For each document [title, original text, common terms], and Document-Term Matrix (DTM)\\
+			\textbf{Phase 2: Topic Modeling whit Machine Learning} \\
+			\quad \textbf{Input:} Document-Term Matrix (DTM) \\
+			\quad a. Apply Latent Dirichlet Allocation (LDA) to transform the DTM Matrix into a space of $\#T$ topics (dimensions).\\
+			\quad b. Obtain the Topic-Term Matrix ($\beta$) that indicates the probability that a term is generated by a specific topic.\\ 
+			\quad c. Obtain the Document-Topic Matrix ($\theta$) that indicates the probability that a document belongs to a specific topic.\\
+			\quad d. For each unknown $t$ topic in $\beta$, assign a name or label to the $t$ topic by combining the $\#K$ highest probability\\
+			\quad \quad common terms in $\beta$ associated with that $t$ topic. This generates: \\
+			\quad \quad The $T$ Set with the $\#T$ most relevant topics. \\
+			\quad \quad The $K$ Set with the $\#K$ most relevant terms. \\
+			\quad \quad The $G_{tk}$ Graph of the relationships between the most relevant topics ($T$) and the most relevant terms ($K$). \\
+			\quad e. For each topic $t$ in $T$, modify topic $t$ by combining the common terms of $t$ into a new topic name with at most \\
+			\quad \quad $W_{t}$ words using a language generation model.\\
+			\quad \textbf{Output:} Relevant Topics ($T$), Topic-Term Matrix ($\beta$), Document-Topic Matrix ($\theta$) \\
+			\textbf{Phase 3: Generation and Integration of Knowledge Representations} \\
+			\quad \textbf{Input:} Relevant Topics $T$, Document-Topic Matrix ($\theta$) \\
+			\quad \textbf{3.1: Knowledge representations through summaries and keywords}\\
+			\quad \quad a. For each $t$ topic in $T$, obtain its $N$ most relevant documents, i.e., those with the highest probabilities in $\theta$. \\
+			\quad \quad \quad Thus, $D_t$ represents the set of documents most related to each topic $t$.\\
+			\quad \quad b. For each topic $t$ in $T$, and from $D_t$ generate a summary of the list of documents most related to that topic $t$ with \\
+			\quad \quad \quad at most $W_b$ words using a language generation model. \\
+			\quad \quad c. Incorporate into the summary the text citing references to the most relevant documents. Add these references to the \\ 
+			\quad \quad \quad set $R_d$, which will contain all cited references, including new references if they have not been previously included.\\
+			\quad \quad d. Integrate all the summaries and from them generate $J$ suggested keywords using a language generation model.\\
+			\quad \textbf{3.2: Knowledge representations through knowledge visualizations with interactive graphs}\\
+			\quad \quad a. From the $G_{tk}$ graph, generate an interactive graph with nodes and relationships between the topics $T$\\
+			\quad \quad and the $K$ most relevant terms.\\
+			\quad \quad b. Highlight the connections between the topics $T$ and the $K$ most relevant terms.\\
+			\quad \textbf{3.3: Integration of Knowledge Representations}\\
+			\hline
+			\textbf{Output:} Knowledge Representations \\
+			\hline
+		\end{tabular}
+	}
+	\caption{\centering General algorithm of the methodology incorporating natural language processing, machine learning techniques and language generation models}
+	\label{tab:Algorithm}
+\end{figure*}
+
+\FloatBarrier
+
+\section{Fundamental of ia}
+
+\section{Variational collaborative filtering}
+Deep learning techniques have significantly advanced the performance of recommender systems (RSs), particularly through collaborative filtering (CF) models. However, traditional models such as Deep Matrix Factorization (DeepMF) and Neural Collaborative Filtering (NCF) often lack the stochasticity required to create robust, continuous, and structured latent spaces, a feature inherent to Variational Autoencoders (VAEs). The sparsity of data in recommender systems poses a challenge for data augmentation methods using VAEs, which have not yielded accurate results in this domain. To address these challenges, the proposed models introduce a variational approach that injects stochasticity into the latent space of deep architectures, allowing for the integration of variational techniques within the CF field. This method is model-agnostic, making it applicable as a plugin to current and future models.
+
+The proposed models, namely Variational Deep Matrix Factorization (VDeepMF) and Variational Neural Collaborative Filtering (VNCF), leverage the strengths of existing neural architectures while incorporating the variational paradigm to enhance the robustness of latent representations. By adopting a variational framework, the models allow for the encoding of user and item interactions as distributions rather than fixed points, thus enhancing the model's ability to generalize predictions. The variational process is designed to improve the completeness and continuity of the latent space, ensuring that sampled points retain meaningful content upon decoding. This characteristic is crucial for effective recommendation generation.
+
+Empirical tests conducted on four widely recognized datasets demonstrated the effectiveness of the proposed models. The experiments employed various metrics, including Mean Absolute Error (MAE), Mean Squared Error (MSE), and R² score, to evaluate prediction quality, alongside precision, recall, and normalized Discounted Cumulative Gain (nDCG) to assess recommendation quality. Results indicated that the VDeepMF model notably outperformed traditional DeepMF models across all datasets, except in scenarios where the dataset was exceptionally large, such as Netflix. This trend suggests that while the variational approach enhances performance in smaller datasets, it may introduce noise in more extensive datasets, potentially degrading recommendation quality.
+
+Moreover, the proposed models exhibit significant improvements in training efficiency, requiring fewer epochs to converge compared to their baseline counterparts. This efficiency stems from the variational layer's ability to generate Shannon entropy, which enhances the model's capacity to learn from the available data. The results underscore the importance of balancing the benefits of variational enrichment with the potential drawbacks of noise injection in latent spaces.
+
+In conclusion, the innovative integration of variational techniques in CF models represents a promising advancement in the field of recommender systems. The findings suggest that the proposed models are especially effective for medium-sized datasets, paving the way for future research that could explore their applicability in diverse contexts within collaborative filtering.
+\section{Matrix factorization models}
+Matrix factorization (MF) models are pivotal in the realm of collaborative filtering recommender systems. This study evaluates six prominent MF models across four distinct datasets, aiming to assess various performance metrics, including both standard accuracy measures and beyond accuracy factors such as novelty and diversity. Collaborative filtering is recognized as one of the most effective methods for generating personalized recommendations by leveraging user behavior and item consumption patterns. The core idea behind CF is to predict a user's preferences for items they have not yet interacted with, utilizing similarities derived from the preferences of other users. 
+
+To achieve this, several MF models are employed, including Probabilistic Matrix Factorization (PMF), Biased Matrix Factorization (BiasedMF), Non-negative Matrix Factorization (NMF), Bernoulli Matrix Factorization (BeMF), Bayesian Non-negative Matrix Factorization (BNMF), and User Ratings Profile Model (URP). These models vary not only in their underlying methodologies but also in their handling of data biases and their capacity for interpretation. The PMF model, for instance, scales linearly with the dataset size and effectively handles sparse and imbalanced datasets, making it suitable for real-world applications. In contrast, BiasedMF addresses issues related to user rating tendencies, enhancing accuracy in environments where user biases are present. 
+
+The evaluation encompasses critical quality measures such as Mean Absolute Error (MAE), novelty, diversity, precision, recall, and Normalized Discounted Cumulative Gain (NDCG). These metrics provide a comprehensive view of each model's performance, beyond mere predictive accuracy. For instance, novelty assesses how well a model can introduce users to new and unexpected items that they have not rated before, while diversity ensures that recommended items cover a broad spectrum of categories, avoiding redundancy. 
+
+Results indicate that BiasedMF and BNMF consistently outperform their counterparts in terms of prediction accuracy across various datasets. Furthermore, while models like NMF excel in delivering novel recommendations, BiasedMF stands out in balancing accuracy and diversity. The study highlights the intricate relationships between different quality measures, suggesting that a model's performance can often be context-dependent, influenced by the specific goals of the recommender system in question. 
+
+In conclusion, the findings underscore the importance of selecting the appropriate MF model based on the desired outcomes, whether that be accuracy, novelty, or diversity. The research suggests that while BiasedMF is highly effective in most scenarios, NMF may be preferable when the discovery of novel items is a priority. Future work should explore the integration of additional MF models and datasets, alongside advanced techniques such as neural networks, to enhance the capabilities of collaborative filtering systems.
+\section{Group recommendation strategies}
+Collaborative filtering has become a cornerstone of modern recommendation systems, particularly for group recommendations. The process of aggregating individual user preferences into a collective suggestion is critical in this context. The challenge lies in how to effectively combine these preferences into a single entity, such as a ranked list or a virtual user representation. The proposed architecture addresses this by utilizing a multi-hot vector approach to aggregate user ratings. This innovative strategy not only enhances the representation of group preferences but also facilitates the generation of recommendations through a neural network model that generalizes from individual predictions.
+
+The significance of this aggregation is underscored by the fact that traditional methods often rely on separate models for individual and group recommendations, which can be cumbersome and inefficient. By employing a single model that integrates individual ratings directly into the feedforward process, the need for extensive training on group data is eliminated. This leads to a more streamlined approach that enhances scalability and reduces computational overhead.
+
+To evaluate the effectiveness of this model, experiments were conducted using three benchmark collaborative filtering datasets. The results indicated notable improvements in accuracy compared to existing methods. This performance boost can be attributed to the model's ability to capture complex, nonlinear relationships in user preferences, an area where conventional matrix factorization techniques often fall short.
+
+In the context of group recommendations, there are two primary strategies: Individual Preference Aggregation (IPA) and Group Preference Aggregation (GPA). IPA involves first predicting ratings for each user and then aggregating these predictions, which can be slow and less accurate. In contrast, GPA aggregates user data at an earlier stage, either before or within the model, allowing for a more holistic view of group preferences. The study demonstrates that GPA approaches tend to yield superior performance, particularly when leveraging the neural network's capacity to process latent factors.
+
+The aggregation methods explored include average, expertise, and softmax strategies. The average aggregation method consistently outperformed others, indicating its robustness in capturing group preferences effectively. Conversely, the expertise-based aggregation led to suboptimal results, underscoring the importance of selecting appropriate aggregation techniques tailored to the specific context of the recommendation task.
+
+Future research directions include refining aggregation strategies and exploring their applicability across various machine learning models. It is also crucial to address the observed overfitting tendencies in group scenarios, suggesting that specialized training mechanisms may be necessary to enhance model performance in diverse group settings. Overall, the findings from this research contribute valuable insights into the design and implementation of effective group recommendation systems, paving the way for further advancements in this dynamic field.
+\section{Evaluation of ia}
+The evaluation of group recommendation systems is a complex challenge within the field of recommendation systems. A critical aspect is the aggregation of individual user preferences into a single, cohesive recommendation for the entire group. This paper introduces a novel approach that focuses on probabilistic semantic aggregation, utilizing a multi-hot vector to represent user preferences before inputting them into a neural network model. This methodology allows the model to generalize group recommendations effectively from individual predictions.
+
+Traditional recommendation systems often rely on matrix factorization techniques, which, while efficient, struggle to capture the complex nonlinear relationships present in user data. By leveraging neural networks, specifically architectures like Generalized Matrix Factorization (GMF) and Multi-Layer Perceptron (MLP), the proposed model enhances the capability to model these intricate relationships \cite{Duenas-Lerin,_2023}. The innovation lies in the aggregation phase, which can occur either before, during, or after the model processing. The general consensus is that earlier aggregation tends to yield better performance.
+
+The paper distinguishes between two primary aggregation strategies: Individual Preference Aggregation (IPA) and Group Preference Aggregation (GPA). IPA processes recommendations for each user individually before combining them, which can lead to inefficiencies and inaccuracies. In contrast, GPA aggregates user information within the model, allowing for a more holistic approach that treats the group as a single entity. This strategy mitigates issues associated with high-dimensional data spaces often encountered in traditional methods.
+
+Furthermore, the model's architecture is designed to operate with a single training phase, eliminating the need for separate training on individual and group data. This efficient design enables the model to utilize existing collaborative filtering datasets without requiring additional group-specific data. The experimental results demonstrate significant accuracy improvements over existing methods, validating the effectiveness of this approach.
+
+The findings indicate that the average aggregation method consistently outperforms other techniques, such as expertise-based aggregation, in terms of accuracy across different datasets. Additionally, the complexity of the dataset appears to influence the performance of the recommendation model, with larger datasets yielding more accurate predictions. The results also highlight the challenges posed by larger group sizes, where discrepancies in user preferences tend to increase, leading to higher error margins in recommendations.
+
+In conclusion, the proposed neural group recommendation system addresses existing limitations in the field by providing a robust and efficient method for aggregating user preferences and generating accurate group recommendations. Future work will explore the potential for further enhancing these aggregation techniques and addressing specific challenges such as cold starts and sparse datasets.
+\section{Trends of ia}
+Recent advancements in generative applications are transforming various domains, including art, computer vision, speech processing, and natural language processing. In the realm of computer science, personalization is gaining significant traction, particularly as major companies like Spotify, Netflix, TripAdvisor, Amazon, and Google increasingly rely on recommender systems (RSs). This trend indicates that generative learning will likely play a more substantial role in enhancing existing recommender systems. A novel method proposed in this context focuses on generating synthetic datasets for recommender systems, which can be invaluable for testing recommendation performance and accuracy under various simulated scenarios, such as substantial increases in dataset size, user numbers, or item counts.
+
+The central innovation of this approach lies in the application of the Wasserstein concept to the existing generative adversarial network for recommender systems (GANRS), which serves as the foundational method for generating synthetic datasets. By leveraging this Wasserstein framework, the proposed method effectively addresses common issues such as mode collapse, ultimately resulting in larger synthetic datasets with improved rating distributions. This flexibility allows researchers and organizations to specify the desired number of users and items, as well as the initial dataset size, making the synthetic datasets not only richer but also tailored to specific testing needs.
+
+Both the baseline GANRS and the newly introduced Wasserstein-based WGANRS architectures utilize dense, short, and continuous embeddings from the latent space, moving away from the sparse and discrete raw samples that previous GAN models relied upon. This shift enhances the efficiency and accuracy of the generative process. The method comprises a series of stages: the initial compression of the input sparse dataset into an embedding representation, followed by the generation of synthetic embedding samples through the WGAN model. Once generated, these embeddings are then decompressed into a usable format, allowing for the creation of a synthetic dataset that mirrors the original source dataset in both structure and distribution.
+
+Experiments conducted using two well-established collaborative filtering datasets—MovieLens and a subset of Netflix—demonstrate the effectiveness of the proposed method. Notably, the analysis reveals significant improvements in the number of generated samples, with results showing a 213% increase when varying the number of users and a 191% increase when changing the number of items. Such enhancements are indicative of reduced mode collapse, leading to more diverse and comprehensive synthetic datasets. Moreover, the rating distributions generated by the WGANRS closely match those of the source datasets, facilitating better recommendation quality metrics.
+
+In summary, the proposed Wasserstein GAN-based approach represents a substantial advancement in the generation of synthetic datasets for collaborative filtering recommender systems. The results highlight its potential to not only improve dataset size and rating distributions but also to serve as a robust testing ground for machine learning models in various simulated scenarios. Future work will focus on applying this method to different datasets, assessing biases, and exploring its utility in data augmentation.
+\section{Conclusion}
+The research presented demonstrates significant advancements in collaborative filtering recommender systems through the integration of innovative methodologies. By employing variational techniques, models such as Variational Deep Matrix Factorization and Variational Neural Collaborative Filtering enhance the robustness of latent representations, particularly for medium	extendash{}sized datasets. The findings indicate that these models outperform traditional counterparts in terms of accuracy and training efficiency, though they may introduce noise in larger datasets. Additionally, the exploration of aggregation strategies for group recommendations reveals that a unified approach can streamline the recommendation process and yield improved accuracy. The introduction of a Wasserstein GAN	extendash{}based method for generating synthetic datasets further contributes to the field by addressing challenges such as mode collapse and enabling tailored testing scenarios. Overall, this research underscores the importance of selecting appropriate models and techniques based on specific recommendation goals, paving the way for future explorations that can refine these methodologies and enhance the efficacy of recommender systems across diverse applications.
+\begin{thebibliography}{00}
+    
+\bibitem{b1}
+    Hurtado, Remigio; PicÃ³n, Cristian; MuÃ±oz, Arantxa; Hurtado, Juan.
+    "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing."
+    In Proceedings of Eighth International Congress on Information and Communication Technology.
+    Springer Nature Singapore, Singapore, 2024.
+    \bibitem{b2}
+    Park, Keunheung; Kim, Jinmi; Lee, Jiwoong. 
+    ``Visual Field Prediction using Recurrent Neural Network,'' 
+    \emph{Scientific Reports}, 
+    vol. 9, no. 1, p. 8385, 
+    2019, 
+    https://doi.org/10.1038/s41598-019-44852-6.
+    
+    \bibitem{b3}
+    Xu, M.; Du, J.; Guan, Z.; Xue, Z.; Kou, F.; Shi, L.; Xu, X.; Li, A. 
+    ``A Multi-RNN Research Topic Prediction Model Based on Spatial Attention and Semantic Consistency-Based Scientific Influence Modeling,'' 
+    \emph{Comput Intell Neurosci}, 
+    vol. 2021, 
+    2021, 
+    p. 1766743, 
+    doi: 10.1155/2021/1766743.
+    
+    \bibitem{b4}
+    Kreutz, Christin; Schenkel, Ralf.
+    ``Scientific Paper Recommendation Systems: a Literature Review of recent Publications,''
+    2022/01/03.
+	\bibitem{Hurtado2023} Hurtado, R., et al. "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing." International Congress on Information and Communication Technology. Singapore: Springer Nature Singapore, 2023.
+    \bibitem{Lopez2024} Lopez, A., Dutan, D., Hurtado, R. "A New Method for Predicting the Importance of Scientific Articles on Topics of Interest Using Natural Language Processing and Recurrent Neural Networks." In: Yang, X.S., Sherratt, S., Dey, N., Joshi, A. (eds) Proceedings of Ninth International Congress on Information and Communication Technology. ICICT 2024 2024. Lecture Notes in Networks and Systems, vol 1013. Springer, Singapore. https://doi.org/10.1007/978-981-97-3559-4\_50.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "ed6c9d31-bc8c-479d-a388-1e9d7a134d19",
+		"name": "Plataformas de investigacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27290967"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/buscar-articulos/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"search_query\": \"Recomendation systems\",\r\n    \"repositorios\" : [\"local\"],\r\n    \"cantidad\" : 1000\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/buscar-articulos/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/preprocesamiento/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"search_query\": \"Recomendation systems\"\r\n  \r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/preprocesamiento/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/encontrar-temas/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"search_query\": \"Recomendation systems\",\r\n    \"num_topics\": 2,\r\n    \"num_palabras\": 3,\r\n    \"n_docs\": 2,\r\n    \"n_palabras\": 1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/encontrar-temas/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/generar_pdf/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"search_query\": \"Recomendation systems\",\r\n    \"lineas_investigacion\": \"Investigación en IA\",\r\n    \"areas_interes\": \"Machine Learning, NLP\",\r\n    \"max_words\": 300,\r\n    \"max_keywords\": 2\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/generar_pdf/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/generar-diagrama/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"search_query\": \"Recomendation systems\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/generar-diagrama/"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/verificar-conexion/ Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"search_query\": \"Recomendation systems\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/generar-diagrama/"
+			},
+			"response": []
+		}
+	]
+}

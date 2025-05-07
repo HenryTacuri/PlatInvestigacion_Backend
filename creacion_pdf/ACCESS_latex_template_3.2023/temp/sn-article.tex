@@ -1,0 +1,207 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[runningheads]{llncs}
+\titlerunning{Universidad Politecnica Salesiana}
+
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%º
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+
+%
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{cite}
+\usepackage{breqn}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx} % Importa el paquete
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb} 
+\usepackage{array}
+\usepackage{algpseudocode}
+\usepackage{blindtext}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{epstopdf}
+\restylefloat{algorithm}
+\newcommand{\INDSTATE}[1][1]{\STATE\hspace{#1\algorithmicindent}}
+\newcounter{mytempeqncnt}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+	
+\begin{document}
+%
+\title{titulo}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Remigio Hurtado\inst{1}}
+%
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{University Politecnica Salesiana \email{Rhurtadoo@ups.edu.ec}\\
+\url{ups.edu.ec}}
+%
+\maketitle    
+%
+\begin{abstract}
+
+\end{abstract}
+
+\begin{keywords}
+
+\end{keywords}
+
+\section{Introduction}
+This paper presents a comprehensive methodology for the development of survey recommendation systems using Natural Language Processing (NLP) and Machine Learning (ML) techniques. The approach ensures systematic analysis and generation of knowledge representations from scientific literature.
+
+\section{Methodology}
+
+Our methodology is designed to ensure a comprehensive and systematic analysis of scientific literature. The methodology used in this study builds on our previous work, including a methodology that leverages machine learning and natural language processing techniques \cite{Hurtado2023}, and a novel method for predicting the importance of scientific articles on topics of interest using natural language processing and recurrent neural networks \cite{Lopez2024}. The process is structured into three phases: data preparation, topic modeling, and the generation and integration of knowledge representations. Each phase is essential for transforming raw text data into meaningful insights, and the detailed parameters and algorithm are explained below. The table \ref{tabDescription} describes the parameters for understanding the overall process and algorithm. The high-level process is presented in Fig. \ref{fig:Methodology}, and the detailed algorithm is outlined in Table \ref{tab:Algorithm}.\\ 
+
+In the data preparation phase, we focus on extracting and cleaning text from scientific documents using natural language processing (NLP) techniques. This phase involves several steps to ensure that the text data is ready for analysis. First, text is extracted from the documents, and non-alphabetic characters that do not add value to the analysis are removed. Next, the text is converted to lowercase, and stopwords (common words that do not contribute much meaning) are removed. We then apply lemmatization, which transforms words to their base form (e.g., "running" becomes "run"). Each document is tokenized (split into individual words or terms), and n-grams (combinations of words) are identified to find common terms. We generate a unified set of common terms, denoted as $TE$, which includes both the terms extracted from the documents and basic terms relevant to any field of study, such as [Fundamentals, Evaluation of Solutions, Trends]. Finally, each document is vectorized with respect to $TE$, resulting in the Document-Term Matrix (DTM).\\
+
+The DTM is a crucial component for topic modeling. It is a matrix where the rows represent the documents in the corpus, and the columns represent the terms (words or n-grams) extracted from the corpus. Each cell in the matrix contains a value indicating the presence or frequency of a term in a document. This structured representation of the text data allows us to apply machine learning techniques to uncover hidden patterns.\\
+
+In the topic modeling phase, we use Latent Dirichlet Allocation (LDA), a popular machine learning technique for identifying topics within a set of documents. By applying LDA to the DTM, we transform the matrix into a space of topics. Specifically, LDA provides us with two key matrices: the Topic-Term Matrix ($\beta$) and the Document-Topic Matrix ($\theta$). The Topic-Term Matrix ($\beta$) indicates the probability that a term is associated with a specific topic, while the Document-Topic Matrix ($\theta$) indicates the probability that a document belongs to a specific topic. For each topic in $\beta$, we assign a name by combining the most probable terms associated with that topic. This process results in the set $T$, which contains the most relevant topics, and the set $K$, which contains the most relevant terms. Additionally, we generate a graph $G_{tk}$ to represent the relationships between topics and terms. Using a language generation model, we refine the names of the topics to ensure they are concise and meaningful, with a maximum of $W_{t}$ words.\\
+
+The final phase involves the generation and integration of knowledge representations, which include summaries, keywords, and interactive visualizations. For each topic $t$ in $T$, we identify the $N$ most relevant documents—those with the highest probabilities in $\theta$. This set, $D_t$, represents the documents most closely related to each topic. We then generate summaries of these documents, each with a maximum of $W_b$ words, using a language generation model. These summaries include references to the most relevant documents, which are added to the set $R_d$ if they are not already included. We also integrate all the summaries and generate $J$ suggested keywords using a language generation model. Additionally, we create interactive graphs from the $G_{tk}$ graph, showcasing nodes and relationships between the topics and terms, and highlighting significant connections.\\
+
+This methodology provides a clear, structured approach to analyzing scientific literature, leveraging advanced NLP and machine learning techniques to generate useful and comprehensible knowledge representations. This is the methodology used in the development of this study, which presents the fundamentals, solution evaluation techniques, trends, and other topics of interest within this field of study. This structured approach ensures a thorough review and synthesis of the current state of knowledge, providing valuable insights and a solid foundation for future research.
+
+\begin{table*}[!h]
+	\caption{\centering Description of parameters of the proposed methodology}
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Parameter} & \textbf{Description}                                                            \\ \hline
+			$T$                  & Set of topics to be generated with the LDA model. \\ \hline
+			$\#T$                & Cardinality of $T$. That is, the number of topics (dimensions).                                    \\ \hline
+			$K$                  & Set of common terms with the highest probability in topic $t$ used to label that topic. \\ \hline
+			$\#K$ 				 & Cardinality of $K$.                                         \\ \hline
+			$W_{t}$   			 & Maximum number of words for combining the common terms of topic $t$ into a new topic name.\\ \hline
+			$N$                  & Number of the most relevant documents to generate a summary of topic $t$.\\ \hline
+			$W_b$                & Maximum number of words to generate a summary of the list of $N$ most related documents to topic $t$.\\ \hline
+			$J$                  & Number of suggested keywords to be generated as knowledge representation.\\ \hline
+		\end{tabular}
+		\label{tabDescription}
+	\end{center}
+\end{table*}
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{metodo.png}
+	\caption{Methodology for the generation of knowledge representations}
+	\label{fig:Methodology}
+\end{figure*}
+
+%Actual
+\begin{figure*}[!h]
+	\centering
+	\begin{tabular}{l}
+		\hline
+		\textbf{General Algorithm} \\
+		\hline
+		\textbf{Input:} Field of study, Scientific articles collected from virtual libraries, $\#T$, $\#K$, $W_{t}$, $N$, $W_b$, $J$\\
+		\hline
+		\textbf{Phase 1: Data Preparation with Natural Language Processing (NLP)} \\
+		\quad a. Extract of text from documents. \\
+		\quad b. Remove non-alphabetic characters that do not add value to the analysis. \\
+		\quad c. Convert to lowercase and remove stopwords. \\
+		\quad d. Apply lemmatization to transform words to their base form. \\
+		\quad e. In each document, tokenize and identify n-grams to identify common terms (words or n-grams). \\
+		\quad f. Unified generation of common terms of all documents. Where $TE$ is the unified set of common terms.\\
+		\quad g. Add in $TE$ the basic terms for any field of study, such as: [Fundamentals, Evaluation of Solutions, Trends]. \\
+		\quad h. Vectorize each document with respect to $TE$ and generate Document-Term Matrix (DTM).\\
+		\quad \textbf{Output:} For each document [title, original text, common terms], and Document-Term Matrix (DTM)\\
+		\textbf{Phase 2: Topic Modeling whit Machine Learning} \\
+		\quad \textbf{Input:} Document-Term Matrix (DTM) \\
+		\quad a. Apply Latent Dirichlet Allocation (LDA) to transform the DTM Matrix into a space of $\#T$ topics (dimensions).\\
+		\quad b. Obtain the Topic-Term Matrix ($\beta$) that indicates the probability that a term is generated by a specific topic.\\ 
+		\quad c. Obtain the Document-Topic Matrix ($\theta$) that indicates the probability that a document belongs to a specific topic.\\
+		\quad d. For each unknown $t$ topic in $\beta$, assign a name or label to the $t$ topic by combining the $\#K$ highest probability\\
+		\quad \quad common terms in $\beta$ associated with that $t$ topic. This generates: \\
+		\quad \quad The $T$ Set with the $\#T$ most relevant topics. \\
+		\quad \quad The $K$ Set with the $\#K$ most relevant terms. \\
+		\quad \quad The $G_{tk}$ Graph of the relationships between the most relevant topics ($T$) and the most relevant terms ($K$). \\
+		\quad e. For each topic $t$ in $T$, modify topic $t$ by combining the common terms of $t$ into a new topic name with at most \\
+		\quad \quad $W_{t}$ words using a language generation model.\\
+		\quad \textbf{Output:} Relevant Topics ($T$), Topic-Term Matrix ($\beta$), Document-Topic Matrix ($\theta$) \\
+		\textbf{Phase 3: Generation and Integration of Knowledge Representations} \\
+		\quad \textbf{Input:} Relevant Topics $T$, Document-Topic Matrix ($\theta$) \\
+		\quad \textbf{3.1: Knowledge representations through summaries and keywords}\\
+		\quad \quad a. For each $t$ topic in $T$, obtain its $N$ most relevant documents, i.e., those with the highest probabilities in $\theta$. \\
+		\quad \quad \quad Thus, $D_t$ represents the set of documents most related to each topic $t$.\\
+		\quad \quad b. For each topic $t$ in $T$, and from $D_t$ generate a summary of the list of documents most related to that topic $t$ with \\
+		\quad \quad \quad at most $W_b$ words using a language generation model. \\
+		\quad \quad c. Incorporate into the summary the text citing references to the most relevant documents. Add these references to the \\ 
+		\quad \quad \quad set $R_d$, which will contain all cited references, including new references if they have not been previously included.\\
+		\quad \quad d. Integrate all the summaries and from them generate $J$ suggested keywords using a language generation model.\\
+		\quad \textbf{3.2: Knowledge representations through knowledge visualizations with interactive graphs}\\
+		\quad \quad a. From the $G_{tk}$ graph, generate an interactive graph with nodes and relationships between the topics $T$\\
+		\quad \quad and the $K$ most relevant terms.\\
+		\quad \quad b. Highlight the connections between the topics $T$ and the $K$ most relevant terms.\\
+		\quad \textbf{3.3: Integration of Knowledge Representations}\\
+		\hline
+		\textbf{Output:} Knowledge Representations \\
+		\hline
+	\end{tabular}
+	\caption{\centering General algorithm of the methodology incorporating natural language processing, machine learning techniques and language generation models}
+	\label{tab:Algorithm}
+\end{figure*}
+
+
+\section{Conclusion}
+This paper presents a robust methodology for creating survey recommendation systems. By integrating NLP and ML techniques, we ensure a systematic and comprehensive analysis, leading to high-quality knowledge representations and user-friendly reports.
+
+\begin{thebibliography}{00}
+    \bibitem{b1}
+    Hurtado, Remigio; Picón, Cristian; Muñoz, Arantxa; Hurtado, Juan.
+    "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing."
+    In Proceedings of Eighth International Congress on Information and Communication Technology.
+    Springer Nature Singapore, Singapore, 2024.
+    \bibitem{b2}
+    Park, Keunheung; Kim, Jinmi; Lee, Jiwoong. 
+    ``Visual Field Prediction using Recurrent Neural Network,'' 
+    \emph{Scientific Reports}, 
+    vol. 9, no. 1, p. 8385, 
+    2019, 
+    https://doi.org/10.1038/s41598-019-44852-6.
+    
+    \bibitem{b3}
+    Xu, M.; Du, J.; Guan, Z.; Xue, Z.; Kou, F.; Shi, L.; Xu, X.; Li, A. 
+    ``A Multi-RNN Research Topic Prediction Model Based on Spatial Attention and Semantic Consistency-Based Scientific Influence Modeling,'' 
+    \emph{Comput Intell Neurosci}, 
+    vol. 2021, 
+    2021, 
+    p. 1766743, 
+    doi: 10.1155/2021/1766743.
+    
+    \bibitem{b4}
+    Kreutz, Christin; Schenkel, Ralf.
+    ``Scientific Paper Recommendation Systems: a Literature Review of recent Publications,''
+    2022/01/03.
+	\bibitem{Hurtado2023} Hurtado, R., et al. "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing." International Congress on Information and Communication Technology. Singapore: Springer Nature Singapore, 2023.
+    \bibitem{Lopez2024} Lopez, A., Dutan, D., Hurtado, R. "A New Method for Predicting the Importance of Scientific Articles on Topics of Interest Using Natural Language Processing and Recurrent Neural Networks." In: Yang, X.S., Sherratt, S., Dey, N., Joshi, A. (eds) Proceedings of Ninth International Congress on Information and Communication Technology. ICICT 2024 2024. Lecture Notes in Networks and Systems, vol 1013. Springer, Singapore. https://doi.org/10.1007/978-981-97-3559-4\_50.
+\end{thebibliography}
+\end{document}

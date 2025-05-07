@@ -1,0 +1,265 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[runningheads]{llncs}
+\titlerunning{Universidad Politecnica Salesiana}
+
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%Âº
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+
+%
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{cite}
+\usepackage{breqn}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx} % Importa el paquete
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb} 
+\usepackage{array}
+\usepackage{algpseudocode}
+\usepackage{blindtext}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{epstopdf}
+\restylefloat{algorithm}
+\newcommand{\INDSTATE}[1][1]{\STATE\hspace{#1\algorithmicindent}}
+\newcounter{mytempeqncnt}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+	
+\begin{document}
+%
+\title{Survey of machine}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Remigio Hurtado\inst{1}}
+%
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{University Politecnica Salesiana \email{Rhurtadoo@ups.edu.ec}\\
+\url{ups.edu.ec}}
+%
+\maketitle    
+%
+\begin{abstract}
+Our methodology is designed to ensure a comprehensive and systematic analysis of scientific literature, beginning with the meticulous preparation of text data using advanced natural language processing (NLP) techniques. The challenge of occupancy prediction is crucial for designing efficient and sustainable office spaces that automate lighting, heating, and air circulation. In large environments, multiple sensors provide comprehensive coverage while maintaining cost	extendash{}effectiveness and user privacy. Low	extendash{}cost, low	extendash{}resolution thermal sensors present a practical solution; however, they are susceptible to noise artifacts from residual heat signatures or heat	extendash{}emitting objects. Previous approaches have not adequately addressed this issue. This work presents a low	extendash{}cost and low	extendash{}energy smart space implementation to predict occupancy based on static or dynamic activity over time, utilizing a non	extendash{}intrusive, low	extendash{}resolution heat sensor in a meeting room. Two innovative workflows were developed: one employing computer vision techniques and the other machine learning algorithms. A thorough comparison was conducted to evaluate their strengths and weaknesses, incorporating cutting	extendash{}edge explainability methods. The study found that while the feature classification method achieved high accuracy without noise artifacts, the computer vision method proved more resilient under noisy conditions. These workflows have potential applicability beyond smart offices, extending to domains like elderly care. Additionally, we explore advancements in environmental monitoring, telecommunications, energy efficiency, and machine learning techniques, emphasizing their transformative potential for managing complex ecosystems and improving industrial processes amid the ongoing energy crisis. This research contributes significantly to the understanding and application of effective methods for occupancy prediction and environmental management.
+\end{abstract}
+
+\begin{keywords}
+occupancy prediction, low	extendash{}resolution sensors, machine learning, environmental monitoring, telecommunications
+\end{keywords}
+
+\section{Introduction}
+In recent years, the integration of machine learning (ML) technologies has transformed various domains, from environmental monitoring to telecommunications and industrial processes. The advent of these technologies has enabled more efficient data analysis and predictions, which are crucial for addressing complex challenges in contemporary society. The intersection of machine learning with traditional systems is not merely a trend but a necessary evolution aimed at optimizing operations and resource management across sectors.
+
+Amidst this technological evolution, there is a pressing need for effective solutions to the challenges posed by noise artifacts in occupancy prediction systems. The ability to accurately predict occupancy in smart environments, such as offices, has significant implications for energy efficiency and user comfort. However, the reliance on low	extendash{}cost thermal sensors introduces complications, particularly due to their susceptibility to noise artifacts, which can arise from residual heat signatures or nearby heat	extendash{}emitting objects. Previous approaches have often overlooked these issues, leading to inaccuracies in occupancy prediction.
+
+Addressing the challenges of occupancy prediction involves several sub	extendash{}problems, including the need for enhanced data collection methods and the development of robust algorithms capable of mitigating the effects of noise. These issues are especially pertinent in the context of designing environments that promote energy efficiency and sustainability. Thus, it is imperative to explore innovative methodologies that can effectively manage noise and improve predictive accuracy.
+
+The importance of addressing these challenges cannot be overstated. Efficient occupancy prediction can lead to significant energy savings, reduced operational costs, and improved user experiences in smart environments. Moreover, as urbanization continues to rise, the demand for intelligent building systems that adapt to user behaviors becomes increasingly critical.
+
+To tackle the identified problems, our research proposes two innovative workflows for occupancy prediction: one that employs computer vision techniques and another that utilizes machine learning algorithms. These approaches are designed to enhance the resilience of predictions against noise artifacts, thereby improving overall accuracy.
+
+Our methodology for developing this survey incorporates a comprehensive and systematic analysis of the scientific literature. It begins with meticulous preparation of text data, applying advanced natural language processing (NLP) techniques to ensure that our findings reflect the most relevant contributions in the field. This systematic approach allows us to synthesize insights from diverse studies, leading to a more nuanced understanding of the current landscape.
+
+The principal contributions of our study include:
+
+	extendash{} **Thorough Analysis of Noise Artifacts**: We provide insights into the sources and impacts of noise artifacts on occupancy prediction.
+	extendash{} **Innovative Workflows Development**: The introduction of two distinct workflows enhances predictive capabilities in smart environments.
+	extendash{} **Explainability Methods**: We incorporate cutting	extendash{}edge methods to analyze algorithm parameters and their influence on performance.
+	extendash{} **Applicability Beyond Smart Offices**: Our findings extend to other domains, such as elderly care, highlighting the versatility of our approaches.
+
+In conclusion, our research aims to fill the existing gaps in occupancy prediction methodologies, contributing valuable knowledge to the fields of computer systems and artificial intelligence by addressing the critical issues of noise artifacts and predictive accuracy.
+
+\begin{thebibliography}{99}
+\item listRefsPaper[ref1, ref2, ref3, ref4, ref5]
+\end{thebibliography}
+ The structure of this document is: the body of the document, then the conclusion, and finally the bibliography.
+\section{Methodology}
+
+Our methodology is designed to ensure a comprehensive and systematic analysis of scientific literature. The methodology used in this study builds on our previous work, including a methodology that leverages machine learning and natural language processing techniques \cite{Hurtado2023}, and a novel method for predicting the importance of scientific articles on topics of interest using natural language processing and recurrent neural networks \cite{Lopez2024}. The process is structured into three phases: data preparation, topic modeling, and the generation and integration of knowledge representations. Each phase is essential for transforming raw text data into meaningful insights, and the detailed parameters and algorithm are explained below. The table \ref{tabDescription} describes the parameters for understanding the overall process and algorithm. The high-level process is presented in Fig. \ref{fig:Methodology}, and the detailed algorithm is outlined in Table \ref{tab:Algorithm}.\\ 
+
+In the data preparation phase, we focus on extracting and cleaning text from scientific documents using natural language processing (NLP) techniques. This phase involves several steps to ensure that the text data is ready for analysis. First, text is extracted from the documents, and non-alphabetic characters that do not add value to the analysis are removed. Next, the text is converted to lowercase, and stopwords (common words that do not contribute much meaning) are removed. We then apply lemmatization, which transforms words to their base form (e.g., "running" becomes "run"). Each document is tokenized (split into individual words or terms), and n-grams (combinations of words) are identified to find common terms. We generate a unified set of common terms, denoted as $TE$, which includes both the terms extracted from the documents and basic terms relevant to any field of study, such as [Fundamentals, Evaluation of Solutions, Trends]. Finally, each document is vectorized with respect to $TE$, resulting in the Document-Term Matrix (DTM).\\
+
+The DTM is a crucial component for topic modeling. It is a matrix where the rows represent the documents in the corpus, and the columns represent the terms (words or n-grams) extracted from the corpus. Each cell in the matrix contains a value indicating the presence or frequency of a term in a document. This structured representation of the text data allows us to apply machine learning techniques to uncover hidden patterns.\\
+
+In the topic modeling phase, we use Latent Dirichlet Allocation (LDA), a popular machine learning technique for identifying topics within a set of documents. By applying LDA to the DTM, we transform the matrix into a space of topics. Specifically, LDA provides us with two key matrices: the Topic-Term Matrix ($\beta$) and the Document-Topic Matrix ($\theta$). The Topic-Term Matrix ($\beta$) indicates the probability that a term is associated with a specific topic, while the Document-Topic Matrix ($\theta$) indicates the probability that a document belongs to a specific topic. For each topic in $\beta$, we assign a name by combining the most probable terms associated with that topic. This process results in the set $T$, which contains the most relevant topics, and the set $K$, which contains the most relevant terms. Additionally, we generate a graph $G_{tk}$ to represent the relationships between topics and terms. Using a language generation model, we refine the names of the topics to ensure they are concise and meaningful, with a maximum of $W_{t}$ words.\\
+
+The final phase involves the generation and integration of knowledge representations, which include summaries, keywords, and interactive visualizations. For each topic $t$ in $T$, we identify the $N$ most relevant documentsâ€”those with the highest probabilities in $\theta$. This set, $D_t$, represents the documents most closely related to each topic. We then generate summaries of these documents, each with a maximum of $W_b$ words, using a language generation model. These summaries include references to the most relevant documents, which are added to the set $R_d$ if they are not already included. We also integrate all the summaries and generate $J$ suggested keywords using a language generation model. Additionally, we create interactive graphs from the $G_{tk}$ graph, showcasing nodes and relationships between the topics and terms, and highlighting significant connections.\\
+
+This methodology provides a clear, structured approach to analyzing scientific literature, leveraging advanced NLP and machine learning techniques to generate useful and comprehensible knowledge representations. This is the methodology used in the development of this study, which presents the fundamentals, solution evaluation techniques, trends, and other topics of interest within this field of study. This structured approach ensures a thorough review and synthesis of the current state of knowledge, providing valuable insights and a solid foundation for future research.
+
+\begin{table*}[!h]
+	\caption{\centering Description of parameters of the proposed methodology}
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Parameter} & \textbf{Description}                                                            \\ \hline
+			$T$                  & Set of topics to be generated with the LDA model. \\ \hline
+			$\#T$                & Cardinality of $T$. That is, the number of topics (dimensions).                                    \\ \hline
+			$K$                  & Set of common terms with the highest probability in topic $t$ used to label that topic. \\ \hline
+			$\#K$ 				 & Cardinality of $K$.                                         \\ \hline
+			$W_{t}$   			 & Maximum number of words for combining the common terms of topic $t$ into a new topic name.\\ \hline
+			$N$                  & Number of the most relevant documents to generate a summary of topic $t$.\\ \hline
+			$W_b$                & Maximum number of words to generate a summary of the list of $N$ most related documents to topic $t$.\\ \hline
+			$J$                  & Number of suggested keywords to be generated as knowledge representation.\\ \hline
+		\end{tabular}
+		\label{tabDescription}
+	\end{center}
+\end{table*}
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{metodo.png}
+	\caption{Methodology for the generation of knowledge representations}
+	\label{fig:Methodology}
+\end{figure*}
+
+%Actual
+\begin{figure*}[!h]
+	\centering
+	\begin{tabular}{l}
+		\hline
+		\textbf{General Algorithm} \\
+		\hline
+		\textbf{Input:} Field of study, Scientific articles collected from virtual libraries, $\#T$, $\#K$, $W_{t}$, $N$, $W_b$, $J$\\
+		\hline
+		\textbf{Phase 1: Data Preparation with Natural Language Processing (NLP)} \\
+		\quad a. Extract of text from documents. \\
+		\quad b. Remove non-alphabetic characters that do not add value to the analysis. \\
+		\quad c. Convert to lowercase and remove stopwords. \\
+		\quad d. Apply lemmatization to transform words to their base form. \\
+		\quad e. In each document, tokenize and identify n-grams to identify common terms (words or n-grams). \\
+		\quad f. Unified generation of common terms of all documents. Where $TE$ is the unified set of common terms.\\
+		\quad g. Add in $TE$ the basic terms for any field of study, such as: [Fundamentals, Evaluation of Solutions, Trends]. \\
+		\quad h. Vectorize each document with respect to $TE$ and generate Document-Term Matrix (DTM).\\
+		\quad \textbf{Output:} For each document [title, original text, common terms], and Document-Term Matrix (DTM)\\
+		\textbf{Phase 2: Topic Modeling whit Machine Learning} \\
+		\quad \textbf{Input:} Document-Term Matrix (DTM) \\
+		\quad a. Apply Latent Dirichlet Allocation (LDA) to transform the DTM Matrix into a space of $\#T$ topics (dimensions).\\
+		\quad b. Obtain the Topic-Term Matrix ($\beta$) that indicates the probability that a term is generated by a specific topic.\\ 
+		\quad c. Obtain the Document-Topic Matrix ($\theta$) that indicates the probability that a document belongs to a specific topic.\\
+		\quad d. For each unknown $t$ topic in $\beta$, assign a name or label to the $t$ topic by combining the $\#K$ highest probability\\
+		\quad \quad common terms in $\beta$ associated with that $t$ topic. This generates: \\
+		\quad \quad The $T$ Set with the $\#T$ most relevant topics. \\
+		\quad \quad The $K$ Set with the $\#K$ most relevant terms. \\
+		\quad \quad The $G_{tk}$ Graph of the relationships between the most relevant topics ($T$) and the most relevant terms ($K$). \\
+		\quad e. For each topic $t$ in $T$, modify topic $t$ by combining the common terms of $t$ into a new topic name with at most \\
+		\quad \quad $W_{t}$ words using a language generation model.\\
+		\quad \textbf{Output:} Relevant Topics ($T$), Topic-Term Matrix ($\beta$), Document-Topic Matrix ($\theta$) \\
+		\textbf{Phase 3: Generation and Integration of Knowledge Representations} \\
+		\quad \textbf{Input:} Relevant Topics $T$, Document-Topic Matrix ($\theta$) \\
+		\quad \textbf{3.1: Knowledge representations through summaries and keywords}\\
+		\quad \quad a. For each $t$ topic in $T$, obtain its $N$ most relevant documents, i.e., those with the highest probabilities in $\theta$. \\
+		\quad \quad \quad Thus, $D_t$ represents the set of documents most related to each topic $t$.\\
+		\quad \quad b. For each topic $t$ in $T$, and from $D_t$ generate a summary of the list of documents most related to that topic $t$ with \\
+		\quad \quad \quad at most $W_b$ words using a language generation model. \\
+		\quad \quad c. Incorporate into the summary the text citing references to the most relevant documents. Add these references to the \\ 
+		\quad \quad \quad set $R_d$, which will contain all cited references, including new references if they have not been previously included.\\
+		\quad \quad d. Integrate all the summaries and from them generate $J$ suggested keywords using a language generation model.\\
+		\quad \textbf{3.2: Knowledge representations through knowledge visualizations with interactive graphs}\\
+		\quad \quad a. From the $G_{tk}$ graph, generate an interactive graph with nodes and relationships between the topics $T$\\
+		\quad \quad and the $K$ most relevant terms.\\
+		\quad \quad b. Highlight the connections between the topics $T$ and the $K$ most relevant terms.\\
+		\quad \textbf{3.3: Integration of Knowledge Representations}\\
+		\hline
+		\textbf{Output:} Knowledge Representations \\
+		\hline
+	\end{tabular}
+	\caption{\centering General algorithm of the methodology incorporating natural language processing, machine learning techniques and language generation models}
+	\label{tab:Algorithm}
+\end{figure*}
+
+
+\section{System assessment framework}
+The challenge of occupancy prediction is essential for designing efficient and sustainable office spaces that automate lighting, heating, and air circulation. In environments where large areas must be monitored, utilizing multiple sensors ensures comprehensive coverage while maintaining cost-effectiveness and user privacy. Low-cost, low-resolution thermal sensors offer a practical solution to these concerns; however, they are highly susceptible to noise artifacts. These artifacts can arise from residual heat signatures of individuals who previously occupied the space or from other heat-emitting objects, such as appliances or sunlight-exposed surfaces.
+
+Previous approaches to occupancy prediction using low-resolution heat sensors have not adequately addressed the issue of noise artifacts. The current work presents a low-cost and low-energy smart space implementation aimed at predicting occupancy based on whether individuals exhibit static or dynamic activity over time. Specifically, a non-intrusive, low-resolution (8x8) heat sensor was employed to gather data from a meeting room. Two innovative workflows were developed for occupancy prediction: one leveraging computer vision techniques and the other utilizing machine learning algorithms.
+
+The study conducted a thorough comparison of the strengths and weaknesses of these workflows. Additionally, it incorporated several cutting-edge explainability methods to analyze the parameters of the algorithms and assess how image properties impact the overall performance. A significant part of the research involved investigating noise sources that interfere with heat sensor data. Results indicated that the feature classification-based method achieved high accuracy when the data were free from noise artifacts. However, in scenarios where noise artifacts were present, the computer vision-based method proved more resilient, effectively compensating for the disturbances.
+
+It is important to note that the computer vision approach requires an initial recording of an empty room, which limits its applicability in certain situations. Conversely, the feature classification method is preferable when there is minimal risk of encountering noise artifacts or when an empty-room recording is unavailable. This analysis aims to enhance understanding of how to manage extremely low-resolution heat images in various contexts.
+
+The workflows proposed here have potential applicability beyond smart office environments, extending to other domains where occupancy prediction is vital, such as elderly care. The findings from this research contribute significantly to the field by providing insights on effective methods for occupancy prediction using low-cost thermal sensors while addressing privacy and operational constraints.
+\section{Assessment core advice}
+The assessment of nearshore benthic environments is critical for effective management and restoration efforts in complex ecosystems such as the Laurentian Great Lakes. The Great Lakes Water Quality Agreement emphasizes the importance of ecosystem monitoring to support adaptive management and environmental policy. However, challenges persist in monitoring ecosystem trends, which can impede progress in lake management. High-resolution maps of nearshore substrates and associated habitats are essential for addressing management needs. Recent advancements in integrating high-quality remotely sensed data with improved analytical methods enhance the feasibility of large-scale benthic mapping at relevant spatial resolutions. A case study in southwest Lake Michigan demonstrates the successful application of machine learning, particularly through the integration of airborne imagery, lidar, and satellite data to classify nearshore benthic substrates effectively. The study evaluated data inputs and analytical methods in the context of the Coastal and Marine Ecological Classification Standard (CMECS), resulting in a robust classification approach that can be adapted for other shallow coastal environments.
+
+Moreover, the use of machine learning models, such as random forest (RF), has proven effective in estimating environmental variables like snow depth. By utilizing a combination of predictor variables, researchers trained RF models and validated them using various datasets, leading to insights into the influencing factors on model accuracy, including geographic location and land cover. The RF approach not only achieved higher accuracy compared to previous datasets but also provided a consistent long-term snow depth dataset, essential for understanding temporal and spatial variations across China. This highlights the potential of machine learning technologies to enhance environmental monitoring and data reconstruction efforts.
+
+In the realm of telecommunications, the deployment of non-terrestrial networks (NTNs) is poised to revolutionize connectivity for 6G and beyond. By leveraging aerial nodes such as high-altitude platforms and unmanned aerial vehicles, NTNs can achieve global coverage while supporting wireless access and backhauling. The utilization of free space optical (FSO) communication in airborne backhauling presents a promising solution due to its high data transmission capabilities and suitability for interference-free environments. Key considerations in the design of these systems include geometrical loss, atmospheric attenuation, and turbulence-induced fading, which impact signal quality and link budget calculations. The exploration of physical layer design principles, including modulation techniques, is critical for optimizing performance in varying operational scenarios.
+
+Furthermore, the integration of advanced technologies such as reconfigurable intelligent surfaces and artificial intelligence/machine learning can enhance the efficiency and scalability of NTNs. These innovations address challenges such as maintaining line of sight in urban areas and improving handover techniques. The ongoing research in these areas underscores the importance of developing sustainable and adaptable communication infrastructures for the future.
+
+In summary, the integration of machine learning in environmental monitoring, coupled with innovative approaches in telecommunications, presents significant opportunities for advancing our understanding and management of complex ecosystems and communication networks.
+\section{Data quality assessment}
+In the context of the ongoing energy crisis, there has been a significant emphasis on enhancing energy efficiency and productivity in various industrial processes, notably in welding and hardfacing operations. A recent study highlights the potential of using exothermic additives in core fillers for flux-cored wire arc welding processes. These additives serve as a relatively inexpensive heat source, which reduces energy consumption during the melting of filler materials and increases the deposition rate. By applying mixture design (MD) as an optimization method, the study evaluated the average current and voltage values, alongside arc stability parameters, based on the composition of the core filler. 
+
+The introduction of exothermic additions (EAs) and the ratios of CuO/C and CuO/Al were analyzed in relation to their impact on arc stability during the FCAW S process. Various parameters indicative of arc stability were assessed using oscillographs, allowing for a detailed analysis of welding current and arc voltage signals. The findings indicated that arc stability evaluation methods can be categorized into graphical and statistical approaches. Graphical methods include current and voltage cyclograms, box plots with frequency histograms, and ellipse parameters plotted on cyclograms, while statistical methods involve standard deviation and coefficients of variation for the assessed welding current and arc voltage.
+
+The comprehensive evaluation revealed that the most stable current parameters were associated with flux-cored wire electrodes containing an optimal average EA content of 26.5–28.58 wt.% and a low CuO/C ratio of 3.75. Conversely, lower arc stability was observed with electrodes exhibiting a high CuO/Al ratio of 4.5 or more and EA content below 29 wt.%. Mathematical models were developed to understand the mean values, standard deviation, and coefficient of variation for welding current and arc voltage. These models demonstrated good prediction accuracy, indicating that the oxidizing-to-reducing agent ratio within the exothermic addition significantly influences welding characteristics.
+
+In a parallel study addressing the fluctuations of liquefied natural gas (LNG) prices exacerbated by the Russia–Ukraine conflict, machine learning (ML) techniques were employed to predict the Japan Korea Marker (JKM), a key spot LNG price index. The study utilized algorithms such as long short-term memory (LSTM), artificial neural networks (ANN), and support vector machines (SVM) for time series predictions. After gathering data on 87 variables, eight were selected for modeling, revealing that JKM, national balancing point (NBP), and Brent price indexes significantly affected model performance. The LSTM model emerged as the most accurate, with a mean absolute error (MAE) of 0.195, although its performance dropped by 57% during the COVID-19 period, raising concerns regarding data reliability.
+
+The comparison of ML models with traditional statistical methods, namely autoregressive integrated moving averages (ARIMA), indicated that the LSTM model's performance was affected by dataset size and structural differences between the models. Nevertheless, with a sufficiently large dataset, ML models are anticipated to surpass ARIMA in predictive accuracy. Experts acknowledged that further studies could enhance ML model performance, ultimately mitigating price fluctuation risks for LNG importers.
+\section{Conclusion}
+The integration of machine learning technologies across various domains showcases their transformative potential in addressing contemporary challenges, particularly in occupancy prediction, environmental monitoring, telecommunications, and industrial processes. The research highlights the effectiveness of low	extendash{}cost thermal sensors combined with innovative workflows for occupancy prediction, revealing the resilience of computer vision methods in the presence of noise artifacts. Furthermore, advancements in machine learning applications for high	extendash{}resolution mapping of nearshore environments and improving energy efficiency in industrial welding processes demonstrate the versatility of these technologies. The deployment of non	extendash{}terrestrial networks utilizing aerial nodes emphasizes the role of machine learning in enhancing communication infrastructures. Additionally, the application of machine learning for predicting LNG prices underlines its capacity to provide accurate forecasts amidst volatile market conditions. Collectively, these findings underscore the importance of developing adaptive, efficient, and sustainable solutions that leverage machine learning to improve operational efficiencies and foster better decision	extendash{}making in diverse fields. As researchers continue to refine these methodologies, the potential for machine learning to revolutionize traditional practices becomes increasingly evident, paving the way for a future characterized by enhanced connectivity, optimized resource management, and improved environmental stewardship.
+\begin{thebibliography}{00}
+    \bibitem{Sun-Feel_2023} Sun-Feel Yang, So-Won Choi, \& Eul-Bum Lee (2023). A Prediction Model for Spot LNG Prices Based on Machine Learning Algorithms to Reduce Fluctuation Risks in Purchasing Prices.
+\bibitem{J._2020} J. Yang, L. Jiang, K. Luojus, J. Pan, J. Lemmetyinen, M. Takala, \& S. Wu (2020). Snow depth estimation and historical data reconstruction over China based on a random forest machine learning approach.
+\bibitem{Mohammed_2023} Mohammed Elamassie, \& Murat Uysal (2023). Free Space Optical Communication: An Enabling Backhaul Technology for 6G Non-Terrestrial Networks.
+\bibitem{Beril_2020} Beril Sirmacek, \& Maria Riveiro (2020). Occupancy Prediction Using Low-Cost and Low-Resolution Heat Sensors for Smart Offices.
+\bibitem{Molly_2021} Molly K. Reif, Brandon S. Krumwiede, Steven E. Brown, Ethan J. Theuerkauf, \& Joseph H. Harwood (2021). Nearshore Benthic Mapping in the Great Lakes: A Multi-Agency Data Integration Approach in Southwest Lake Michigan.
+\bibitem{Vasyl_2024} Vasyl Lozynskyi, Bohdan Trembach, Egidijus Katinas, Kostiantyn Sadovyi, Michal Krbata, Oleksii Balenko, Ihor Krasnoshapka, Olena Rebrova, Sergey Knyazev, Oleksii Kabatskyi, Hanna Kniazieva, \& Liubomyr Ropyak (2024). Effect of Exothermic Additions in Core Filler on Arc Stability and Microstructure during Self-Shielded, Flux-Cored Arc Welding.
+\bibitem{b1}
+    Hurtado, Remigio; PicÃ³n, Cristian; MuÃ±oz, Arantxa; Hurtado, Juan.
+    "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing."
+    In Proceedings of Eighth International Congress on Information and Communication Technology.
+    Springer Nature Singapore, Singapore, 2024.
+    \bibitem{b2}
+    Park, Keunheung; Kim, Jinmi; Lee, Jiwoong. 
+    ``Visual Field Prediction using Recurrent Neural Network,'' 
+    \emph{Scientific Reports}, 
+    vol. 9, no. 1, p. 8385, 
+    2019, 
+    https://doi.org/10.1038/s41598-019-44852-6.
+    
+    \bibitem{b3}
+    Xu, M.; Du, J.; Guan, Z.; Xue, Z.; Kou, F.; Shi, L.; Xu, X.; Li, A. 
+    ``A Multi-RNN Research Topic Prediction Model Based on Spatial Attention and Semantic Consistency-Based Scientific Influence Modeling,'' 
+    \emph{Comput Intell Neurosci}, 
+    vol. 2021, 
+    2021, 
+    p. 1766743, 
+    doi: 10.1155/2021/1766743.
+    
+    \bibitem{b4}
+    Kreutz, Christin; Schenkel, Ralf.
+    ``Scientific Paper Recommendation Systems: a Literature Review of recent Publications,''
+    2022/01/03.
+	\bibitem{Hurtado2023} Hurtado, R., et al. "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing." International Congress on Information and Communication Technology. Singapore: Springer Nature Singapore, 2023.
+    \bibitem{Lopez2024} Lopez, A., Dutan, D., Hurtado, R. "A New Method for Predicting the Importance of Scientific Articles on Topics of Interest Using Natural Language Processing and Recurrent Neural Networks." In: Yang, X.S., Sherratt, S., Dey, N., Joshi, A. (eds) Proceedings of Ninth International Congress on Information and Communication Technology. ICICT 2024 2024. Lecture Notes in Networks and Systems, vol 1013. Springer, Singapore. https://doi.org/10.1007/978-981-97-3559-4\_50.
+\end{thebibliography}
+\end{document}

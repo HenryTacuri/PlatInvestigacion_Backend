@@ -1,0 +1,274 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[runningheads]{llncs}
+\titlerunning{Universidad Politecnica Salesiana}
+
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%Âº
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+%\usepackage{color}
+%\renewcommand\UrlFont{\color{blue}\rmfamily}
+
+%
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{cite}
+\usepackage{breqn}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{soul}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx} % Importa el paquete
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb} 
+\usepackage{array}
+\usepackage{algpseudocode}
+\usepackage{blindtext}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{epstopdf}
+\restylefloat{algorithm}
+\newcommand{\INDSTATE}[1][1]{\STATE\hspace{#1\algorithmicindent}}
+\newcounter{mytempeqncnt}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+	
+\begin{document}
+%
+\title{Survey of  distributed systems}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Remigio Hurtado\inst{1}}
+%
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{University Politecnica Salesiana \email{Rhurtadoo@ups.edu.ec}\\
+\url{ups.edu.ec}}
+%
+\maketitle    
+%
+\begin{abstract}
+The increasing concerns regarding environmental degradation and climate change highlight the urgent need for sustainable energy solutions. Among various energy harvesting technologies, piezoelectric energy harvesting stands out due to its superior ability to convert mechanical energy into electrical energy compared to electrostatic, electromagnetic, and triboelectric systems. This review examines the evolution of piezoelectric micro	extendash{}power generators, emphasizing their potential to power sensor units in distributed networks essential for modern applications requiring self	extendash{}powered capabilities. An exploration of advancements in piezoelectric materials reveals a diverse range of substances, including zinc oxide, ceramics, and bio	extendash{}inspired materials, which significantly enhance energy harvesting efficiency. Recent studies demonstrate the transformative impact of energy harvesting technologies on smart homes, industrial manipulators, and environmental monitoring systems, driven by the demand for energy	extendash{}efficient solutions in the age of 5G technology. The integration of these technologies within Renewable Energy Communities fosters local energy production and consumption, reducing operational costs and carbon emissions. Furthermore, the use of computational geometry in optimizing mobile robotics highlights the interdisciplinary potential of distributed systems. Overall, the trends in distributed systems are indicative of a significant movement towards sustainability and efficiency, with ongoing research expected to yield innovative applications that address the challenges of energy consumption and environmental sustainability effectively. By harnessing advanced energy harvesting techniques and exploring novel applications, the potential for creating self	extendash{}sustained, energy	extendash{}efficient systems is increasingly within reach.
+\end{abstract}
+
+\begin{keywords}
+energy harvesting, distributed systems, renewable energy, smart cities, piezoelectric generators
+\end{keywords}
+
+\section{Introduction}
+The rapid evolution of distributed systems has become a cornerstone of modern technological advancements, particularly in the realms of energy consumption and sustainability. These systems leverage innovative energy harvesting technologies to create self	extendash{}sustaining environments that are essential in addressing the urgent challenges posed by climate change and resource depletion. As global energy demands escalate, the need for sustainable solutions becomes increasingly critical, prompting a shift towards decentralized energy production and consumption models.
+
+The motivation behind exploring distributed systems lies in their potential to revolutionize how we manage energy resources. As communities strive for greater energy independence and efficiency, distributed systems offer a pathway to not only reduce dependence on fossil fuels but also to enhance overall energy resilience. This transition is particularly pertinent given the alarming projections regarding climate change and its detrimental impacts on ecosystems and human health.
+
+However, the journey towards effective implementation of distributed systems is fraught with challenges. Key issues include the integration of diverse energy sources, optimization of resource allocation, and the management of complex networks. Each of these sub	extendash{}problems requires innovative solutions that can harmonize technological advancements with practical applications in real	extendash{}world scenarios. Addressing these issues is vital for the realization of smart cities and sustainable urban development.
+
+The importance of tackling these challenges cannot be overstated. As cities become increasingly populated, the demand for efficient energy systems grows exponentially. Distributed energy systems not only promise to alleviate this demand but also offer significant environmental benefits, including substantial reductions in carbon emissions. The integration of renewable energy sources is particularly promising, as demonstrated by the potential for localized energy production to decrease operational costs and enhance energy security.
+
+Among the most relevant solutions emerging in the field of distributed systems are the advancements in energy harvesting technologies. These innovations enable devices to collect and utilize energy from their environment, facilitating the development of self	extendash{}powered sensors and IoT applications. The concepts of Renewable Energy Communities have started to gain traction, showcasing the potential for localized energy production to foster economic growth and environmental sustainability.
+
+Our methodology for developing this survey encompasses a comprehensive and systematic analysis of scientific literature. It begins with the meticulous preparation of text data, applying advanced natural language processing (NLP) techniques to extract relevant insights and synthesize findings from various sources. This approach ensures that our review is thorough and representative of the current state of research in distributed systems.
+
+The primary contributions of our study include:
+	extendash{} **Exhaustive Review of the State of the Art**: A detailed analysis and synthesis of the most relevant and recent contributions in the existing literature.
+	extendash{} **Identification of Key Trends**: Highlighting significant trends in energy harvesting technologies and their applications in smart systems.
+	extendash{} **Framework for Future Research Directions**: Providing a roadmap for future investigations that can further enhance the implementation of distributed systems in various sectors.
+
+In conclusion, the exploration of distributed systems is not only timely but essential for fostering an energy	extendash{}efficient and sustainable future. The ongoing developments in this field are poised to address pressing global challenges while paving the way for innovative applications that can significantly impact energy management and environmental sustainability.
+
+\begin{thebibliography}{}
+\bibitem{Long_2021} 
+\bibitem{Jacopo_2022} 
+\bibitem{Zehuan_2023} 
+\bibitem{Ehsan_2023} 
+\bibitem{Susanna_2019} 
+\bibitem{Yijing_2022} 
+\end{thebibliography}
+
+listRefsPaper[Long_2021, Jacopo_2022, Zehuan_2023, Ehsan_2023, Susanna_2019, Yijing_2022]
+ The structure of this document is: the body of the document, then the conclusion, and finally the bibliography.
+\section{Methodology}
+
+Our methodology is designed to ensure a comprehensive and systematic analysis of scientific literature. The methodology used in this study builds on our previous work, including a methodology that leverages machine learning and natural language processing techniques \cite{Hurtado2023}, and a novel method for predicting the importance of scientific articles on topics of interest using natural language processing and recurrent neural networks \cite{Lopez2024}. The process is structured into three phases: data preparation, topic modeling, and the generation and integration of knowledge representations. Each phase is essential for transforming raw text data into meaningful insights, and the detailed parameters and algorithm are explained below. The table \ref{tabDescription} describes the parameters for understanding the overall process and algorithm. The high-level process is presented in Fig. \ref{fig:Methodology}, and the detailed algorithm is outlined in Table \ref{tab:Algorithm}.\\ 
+
+In the data preparation phase, we focus on extracting and cleaning text from scientific documents using natural language processing (NLP) techniques. This phase involves several steps to ensure that the text data is ready for analysis. First, text is extracted from the documents, and non-alphabetic characters that do not add value to the analysis are removed. Next, the text is converted to lowercase, and stopwords (common words that do not contribute much meaning) are removed. We then apply lemmatization, which transforms words to their base form (e.g., "running" becomes "run"). Each document is tokenized (split into individual words or terms), and n-grams (combinations of words) are identified to find common terms. We generate a unified set of common terms, denoted as $TE$, which includes both the terms extracted from the documents and basic terms relevant to any field of study, such as [Fundamentals, Evaluation of Solutions, Trends]. Finally, each document is vectorized with respect to $TE$, resulting in the Document-Term Matrix (DTM).\\
+
+The DTM is a crucial component for topic modeling. It is a matrix where the rows represent the documents in the corpus, and the columns represent the terms (words or n-grams) extracted from the corpus. Each cell in the matrix contains a value indicating the presence or frequency of a term in a document. This structured representation of the text data allows us to apply machine learning techniques to uncover hidden patterns.\\
+
+In the topic modeling phase, we use Latent Dirichlet Allocation (LDA), a popular machine learning technique for identifying topics within a set of documents. By applying LDA to the DTM, we transform the matrix into a space of topics. Specifically, LDA provides us with two key matrices: the Topic-Term Matrix ($\beta$) and the Document-Topic Matrix ($\theta$). The Topic-Term Matrix ($\beta$) indicates the probability that a term is associated with a specific topic, while the Document-Topic Matrix ($\theta$) indicates the probability that a document belongs to a specific topic. For each topic in $\beta$, we assign a name by combining the most probable terms associated with that topic. This process results in the set $T$, which contains the most relevant topics, and the set $K$, which contains the most relevant terms. Additionally, we generate a graph $G_{tk}$ to represent the relationships between topics and terms. Using a language generation model, we refine the names of the topics to ensure they are concise and meaningful, with a maximum of $W_{t}$ words.\\
+
+The final phase involves the generation and integration of knowledge representations, which include summaries, keywords, and interactive visualizations. For each topic $t$ in $T$, we identify the $N$ most relevant documentsâ€”those with the highest probabilities in $\theta$. This set, $D_t$, represents the documents most closely related to each topic. We then generate summaries of these documents, each with a maximum of $W_b$ words, using a language generation model. These summaries include references to the most relevant documents, which are added to the set $R_d$ if they are not already included. We also integrate all the summaries and generate $J$ suggested keywords using a language generation model. Additionally, we create interactive graphs from the $G_{tk}$ graph, showcasing nodes and relationships between the topics and terms, and highlighting significant connections.\\
+
+This methodology provides a clear, structured approach to analyzing scientific literature, leveraging advanced NLP and machine learning techniques to generate useful and comprehensible knowledge representations. This is the methodology used in the development of this study, which presents the fundamentals, solution evaluation techniques, trends, and other topics of interest within this field of study. This structured approach ensures a thorough review and synthesis of the current state of knowledge, providing valuable insights and a solid foundation for future research.
+
+\begin{table*}[!h]
+	\caption{\centering Description of parameters of the proposed methodology}
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Parameter} & \textbf{Description}                                                            \\ \hline
+			$T$                  & Set of topics to be generated with the LDA model. \\ \hline
+			$\#T$                & Cardinality of $T$. That is, the number of topics (dimensions).                                    \\ \hline
+			$K$                  & Set of common terms with the highest probability in topic $t$ used to label that topic. \\ \hline
+			$\#K$ 				 & Cardinality of $K$.                                         \\ \hline
+			$W_{t}$   			 & Maximum number of words for combining the common terms of topic $t$ into a new topic name.\\ \hline
+			$N$                  & Number of the most relevant documents to generate a summary of topic $t$.\\ \hline
+			$W_b$                & Maximum number of words to generate a summary of the list of $N$ most related documents to topic $t$.\\ \hline
+			$J$                  & Number of suggested keywords to be generated as knowledge representation.\\ \hline
+		\end{tabular}
+		\label{tabDescription}
+	\end{center}
+\end{table*}
+
+\begin{figure*}[!h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{metodo.png}
+	\caption{Methodology for the generation of knowledge representations}
+	\label{fig:Methodology}
+\end{figure*}
+
+%Actual
+\begin{figure*}[!h]
+	\centering
+	\begin{tabular}{l}
+		\hline
+		\textbf{General Algorithm} \\
+		\hline
+		\textbf{Input:} Field of study, Scientific articles collected from virtual libraries, $\#T$, $\#K$, $W_{t}$, $N$, $W_b$, $J$\\
+		\hline
+		\textbf{Phase 1: Data Preparation with Natural Language Processing (NLP)} \\
+		\quad a. Extract of text from documents. \\
+		\quad b. Remove non-alphabetic characters that do not add value to the analysis. \\
+		\quad c. Convert to lowercase and remove stopwords. \\
+		\quad d. Apply lemmatization to transform words to their base form. \\
+		\quad e. In each document, tokenize and identify n-grams to identify common terms (words or n-grams). \\
+		\quad f. Unified generation of common terms of all documents. Where $TE$ is the unified set of common terms.\\
+		\quad g. Add in $TE$ the basic terms for any field of study, such as: [Fundamentals, Evaluation of Solutions, Trends]. \\
+		\quad h. Vectorize each document with respect to $TE$ and generate Document-Term Matrix (DTM).\\
+		\quad \textbf{Output:} For each document [title, original text, common terms], and Document-Term Matrix (DTM)\\
+		\textbf{Phase 2: Topic Modeling whit Machine Learning} \\
+		\quad \textbf{Input:} Document-Term Matrix (DTM) \\
+		\quad a. Apply Latent Dirichlet Allocation (LDA) to transform the DTM Matrix into a space of $\#T$ topics (dimensions).\\
+		\quad b. Obtain the Topic-Term Matrix ($\beta$) that indicates the probability that a term is generated by a specific topic.\\ 
+		\quad c. Obtain the Document-Topic Matrix ($\theta$) that indicates the probability that a document belongs to a specific topic.\\
+		\quad d. For each unknown $t$ topic in $\beta$, assign a name or label to the $t$ topic by combining the $\#K$ highest probability\\
+		\quad \quad common terms in $\beta$ associated with that $t$ topic. This generates: \\
+		\quad \quad The $T$ Set with the $\#T$ most relevant topics. \\
+		\quad \quad The $K$ Set with the $\#K$ most relevant terms. \\
+		\quad \quad The $G_{tk}$ Graph of the relationships between the most relevant topics ($T$) and the most relevant terms ($K$). \\
+		\quad e. For each topic $t$ in $T$, modify topic $t$ by combining the common terms of $t$ into a new topic name with at most \\
+		\quad \quad $W_{t}$ words using a language generation model.\\
+		\quad \textbf{Output:} Relevant Topics ($T$), Topic-Term Matrix ($\beta$), Document-Topic Matrix ($\theta$) \\
+		\textbf{Phase 3: Generation and Integration of Knowledge Representations} \\
+		\quad \textbf{Input:} Relevant Topics $T$, Document-Topic Matrix ($\theta$) \\
+		\quad \textbf{3.1: Knowledge representations through summaries and keywords}\\
+		\quad \quad a. For each $t$ topic in $T$, obtain its $N$ most relevant documents, i.e., those with the highest probabilities in $\theta$. \\
+		\quad \quad \quad Thus, $D_t$ represents the set of documents most related to each topic $t$.\\
+		\quad \quad b. For each topic $t$ in $T$, and from $D_t$ generate a summary of the list of documents most related to that topic $t$ with \\
+		\quad \quad \quad at most $W_b$ words using a language generation model. \\
+		\quad \quad c. Incorporate into the summary the text citing references to the most relevant documents. Add these references to the \\ 
+		\quad \quad \quad set $R_d$, which will contain all cited references, including new references if they have not been previously included.\\
+		\quad \quad d. Integrate all the summaries and from them generate $J$ suggested keywords using a language generation model.\\
+		\quad \textbf{3.2: Knowledge representations through knowledge visualizations with interactive graphs}\\
+		\quad \quad a. From the $G_{tk}$ graph, generate an interactive graph with nodes and relationships between the topics $T$\\
+		\quad \quad and the $K$ most relevant terms.\\
+		\quad \quad b. Highlight the connections between the topics $T$ and the $K$ most relevant terms.\\
+		\quad \textbf{3.3: Integration of Knowledge Representations}\\
+		\hline
+		\textbf{Output:} Knowledge Representations \\
+		\hline
+	\end{tabular}
+	\caption{\centering General algorithm of the methodology incorporating natural language processing, machine learning techniques and language generation models}
+	\label{tab:Algorithm}
+\end{figure*}
+
+
+\section{Energy core utilization}
+The utilization of energy cores has gained significant attention due to the rapid advancements in energy harvesting technologies. These developments have enabled the creation of micro-nano and scalable energy harvesters, which are pivotal for self-powered sensors and Internet of Things (IoT) applications. The integration of these technologies facilitates the establishment of smart homes, industrial manipulators, and monitoring systems in various environments, all targeting energy-efficient advancements by harnessing distributed energy sources effectively.
+
+A thorough review of the evolution of energy harvesting technologies reveals a shift from fundamental concepts to the exploration of diverse materials that enhance energy efficiency. Self-powered sensors and self-sustained IoT applications serve as foundational elements in the current landscape, which are extensively discussed in terms of strategies for energy harvesting and sensing. These applications span across smart homes, gas sensing, human monitoring, robotics, transportation, and aerospace, showcasing a wide array of innovative uses for energy harvesters \cite{Long_2021}.
+
+In contemporary applications, the concept of Renewable Energy Communities has emerged, especially within European legislation, promoting the generation and consumption of energy through local power plants. These communities leverage low-temperature district heating and cooling networks integrated with distributed heat pumps to exploit renewable energy sources effectively. Research indicates that sharing electricity produced by local photovoltaic (PV) systems can significantly mitigate operational costs associated with traditional energy sources. Simulations reveal that while the self-consumption increase due to distributed heat pumps is modest, the environmental benefits are substantial, leading to a CO2 emission reduction of 72-80%, making these systems a compelling option for sustainable urban infrastructure \cite{Jacopo_2022}.
+
+Moreover, the potential of piezoelectric micro-power generators has been underscored as a promising solution for powering sensor units in distributed networks. These generators convert mechanical energy into electrical energy with high efficiency, particularly in applications involving wind, liquid flow, and body movement. The ongoing research emphasizes the development of advanced piezoelectric materials and hybrid systems that can enhance energy harvesting at micro and nanoscale levels, thus contributing to the viability of self-powered sensor networks \cite{Zehuan_2023}.
+
+The intersection of energy harvesting technologies with computational geometry also presents exciting prospects. The algorithms developed within computational geometry have been employed to address complex optimization problems such as path planning for mobile robots. These advancements can facilitate more efficient energy utilization in robotic systems, particularly in environments where energy resources are distributed and require intelligent management \cite{Ehsan_2023}.
+
+In conclusion, the utilization of energy cores within distributed systems is transforming the landscape of energy consumption and generation. By harnessing advanced energy harvesting techniques and exploring innovative applications, the potential for creating self-sustained, energy-efficient systems is increasingly within reach. The ongoing research and development in this field not only promise to enhance the efficiency of existing technologies but also pave the way for novel applications that can significantly impact energy management and sustainability.
+\section{Piezoelectric energy harvesting}
+The increasing concerns regarding anthropogenic environmental degradation and climate change have underscored the urgent need for sustainable and renewable energy solutions. Among various energy harvesting technologies, piezoelectric energy harvesting stands out due to its remarkable ability to convert mechanical energy into electrical energy. This conversion is significantly more effective than other methods such as electrostatic, electromagnetic, and triboelectric systems due to the superior electromechanical coupling properties of piezoelectric materials. The scientific community has shown considerable interest in piezoelectric micro-power generators, especially for their potential to power sensor units within distributed sensor networks, which are essential for modern applications requiring self-powered capabilities.
+
+A comprehensive review of piezoelectric energy harvesting reveals the fundamental principles of piezoelectric energy conversion, including the various operational modes and mechanisms involved. The exploration of current research advancements in piezoelectric materials is crucial, as it includes a wide range of substances such as zinc oxide, ceramics, single crystals, organics, composites, bio-inspired materials, and foams. These materials play a vital role in enhancing the efficiency of energy harvesting systems, particularly at nano- and microscales, where their applications span across diverse fields including wind energy, fluid dynamics, human motion, and medical implantable devices.
+
+Recent studies have highlighted the evolution of energy harvesting technologies, particularly focusing on micro and nano-scale harvesters designed to support self-powered sensors and the Internet of Things (IoT) applications. The advancements in energy harvesting techniques are driving transformative changes in smart homes, industrial manipulators, and environmental monitoring systems by harnessing distributed energy sources effectively. This shift towards intelligent and energy-efficient solutions is indicative of the potential for piezoelectric systems to facilitate the development of smart cities in the era of 5G technology, where energy efficiency and sustainability are paramount.
+
+Furthermore, the integration of piezoelectric energy harvesting within the framework of Renewable Energy Communities has emerged as a promising strategy. These communities enable the production and consumption of energy from localized renewable sources, such as photovoltaic systems. The potential for shared electricity generation not only leads to economic benefits by reducing operational costs but also contributes significantly to lowering carbon emissions, thereby addressing environmental concerns.
+
+In summary, the prospects for piezoelectric energy harvesting are extensive and multifaceted, ranging from powering small-scale devices to contributing to the larger frameworks of smart cities and sustainable energy solutions. The ongoing research and development in this field are expected to yield innovative applications and improvements in energy efficiency, ultimately playing a crucial role in mitigating the challenges posed by energy consumption and environmental degradation.
+\section{Trends evaluation insights}
+The exploration of trends in distributed systems has gained significant momentum, especially in the context of energy consumption and environmental sustainability. The increasing per capita energy consumption over the last two centuries, primarily fueled by fossil energy sources, poses critical challenges to both climate stability and socio-ecological systems. As a response, innovative solutions are necessary to reduce fossil energy demand while maintaining essential energy services. District heating systems, particularly those powered by renewable energy, emerge as a viable solution to address these challenges. The Eco.District.Heat-kit, a novel planning model, supports decision-making processes for grid-bound heating. This interdisciplinary approach evaluates the feasibility of district heating systems from both qualitative and quantitative standpoints, enabling a more efficient pre-evaluation using readily available data \cite{Susanna_2019}.
+
+Furthermore, the emergence of Renewable Energy Communities in European legislation promotes local energy production and consumption, contributing to the decarbonization of the building sector. Research has shown that low-temperature district heating networks, coupled with distributed heat pumps, can effectively harness renewable and waste heat sources. However, the seasonal mismatch between heating demand and photovoltaic (PV) production limits the increase in self-consumption from these distributed systems. Despite this, the environmental benefits are substantial, with CO2 emissions potentially reduced by up to 80% depending on the installed PV capacity \cite{Jacopo_2022}. This highlights the role of shared local power plants in optimizing the techno-economic performance of advanced heating networks.
+
+In addition to energy systems, the field of active noise control (ANC) illustrates the complexity of distributed technologies. ANC systems utilize multiple loudspeakers and microphones to effectively reduce noise in various environments. Recent advancements address the challenges of creating larger quiet zones with improved noise reduction capabilities. Various factors, such as acoustic design and control strategies, are crucial in enhancing the performance of multichannel ANC systems, thereby paving the way for practical applications in real-world scenarios \cite{Yijing_2022}.
+
+Computational geometry (CG) also plays a significant role in the development of distributed systems, particularly in mobile robotics. The algorithms derived from CG are essential for solving complex optimization problems related to automated path planning. Recent studies have demonstrated the application of CG principles in both single and multi-robot systems, highlighting its potential for improving efficiency in robotic operations \cite{Ehsan_2023}. 
+
+Additionally, the rapid advancement of energy harvesting technologies is transforming the landscape for self-powered sensors and IoT applications. These technologies enable devices to utilize distributed energy sources, enhancing their sustainability and efficiency. The review of energy harvesting technologies discusses various applications, including smart homes and transportation systems, showcasing the potential for future developments in smart cities, especially in the context of the 5G era \cite{Long_2021}.
+
+In conclusion, the trends in distributed systems reflect a broader movement towards sustainability, efficiency, and technological advancement across various domains. By leveraging interdisciplinary approaches and innovative technologies, significant strides can be made in addressing the pressing challenges of energy consumption and environmental impact.
+\section{Conclusion}
+The exploration of distributed systems reveals a significant shift towards sustainable energy solutions and the integration of advanced technologies. The emphasis on energy harvesting, particularly through piezoelectric systems, showcases the potential to power self	extendash{}sustained sensors and IoT applications effectively. These innovations not only reduce reliance on fossil fuels but also contribute to the development of Renewable Energy Communities, enhancing local energy consumption and minimizing carbon emissions. The application of computational geometry in optimizing energy distribution and robotic operations exemplifies the interdisciplinary approaches needed to address complex challenges. As smart cities emerge, leveraging renewable energy through district heating systems and innovative energy management practices becomes crucial. Overall, the trends in distributed systems highlight the urgent need for sustainable practices and the transformative power of technology in shaping a more energy	extendash{}efficient future. This convergence of energy harvesting technologies and intelligent system design promises substantial advancements in combating environmental degradation while fostering economic benefits through shared local energy resources. The ongoing research and development in this area are essential for realizing the full potential of distributed systems in promoting sustainability and resilience in energy consumption.
+\begin{thebibliography}{00}
+    \bibitem{Jacopo_2022} Jacopo Vivian, Mattia Chinello, Angelo Zarrella, \& Michele De Carli (2022). Investigation on Individual and Collective PV Self-Consumption for a Fifth Generation District Heating Network.
+\bibitem{Zehuan_2023} Zehuan Wang, Shiyuan Liu, Zhengbao Yang, \& Shuxiang Dong (2023). Perspective on Development of Piezoelectric Micro-Power Generators.
+\bibitem{Ehsan_2023} Ehsan Latif, \& Ramviyas Parasuraman (2023). On the Intersection of Computational Geometry Algorithms with Mobile Robot Path Planning.
+\bibitem{Susanna_2019} Susanna Erker, Peter Lichtenwoehrer, Franz Zach, \& Gernot Stoeglehner (2019). Interdisciplinary decision support model for grid-bound heat supply systems in urban areas.
+\bibitem{Long_2021} Long Liu, Xinge Guo, Weixin Liu, \& Chengkuo Lee (2021). Recent Progress in the Energy Harvesting TechnologyFrom Self-Powered Sensors to Self-Sustained IoT, and New Applications.
+\bibitem{Yijing_2022} Yijing Chu, Ming Wu, Hongling Sun, Jun Yang, \& Mingyang Chen (2022). Some Practical Acoustic Design and Typical Control Strategies for Multichannel Active Noise Control.
+\bibitem{b1}
+    Hurtado, Remigio; PicÃ³n, Cristian; MuÃ±oz, Arantxa; Hurtado, Juan.
+    "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing."
+    In Proceedings of Eighth International Congress on Information and Communication Technology.
+    Springer Nature Singapore, Singapore, 2024.
+    \bibitem{b2}
+    Park, Keunheung; Kim, Jinmi; Lee, Jiwoong. 
+    ``Visual Field Prediction using Recurrent Neural Network,'' 
+    \emph{Scientific Reports}, 
+    vol. 9, no. 1, p. 8385, 
+    2019, 
+    https://doi.org/10.1038/s41598-019-44852-6.
+    
+    \bibitem{b3}
+    Xu, M.; Du, J.; Guan, Z.; Xue, Z.; Kou, F.; Shi, L.; Xu, X.; Li, A. 
+    ``A Multi-RNN Research Topic Prediction Model Based on Spatial Attention and Semantic Consistency-Based Scientific Influence Modeling,'' 
+    \emph{Comput Intell Neurosci}, 
+    vol. 2021, 
+    2021, 
+    p. 1766743, 
+    doi: 10.1155/2021/1766743.
+    
+    \bibitem{b4}
+    Kreutz, Christin; Schenkel, Ralf.
+    ``Scientific Paper Recommendation Systems: a Literature Review of recent Publications,''
+    2022/01/03.
+	\bibitem{Hurtado2023} Hurtado, R., et al. "Survey of Intent-Based Networks and a Methodology Based on Machine Learning and Natural Language Processing." International Congress on Information and Communication Technology. Singapore: Springer Nature Singapore, 2023.
+    \bibitem{Lopez2024} Lopez, A., Dutan, D., Hurtado, R. "A New Method for Predicting the Importance of Scientific Articles on Topics of Interest Using Natural Language Processing and Recurrent Neural Networks." In: Yang, X.S., Sherratt, S., Dey, N., Joshi, A. (eds) Proceedings of Ninth International Congress on Information and Communication Technology. ICICT 2024 2024. Lecture Notes in Networks and Systems, vol 1013. Springer, Singapore. https://doi.org/10.1007/978-981-97-3559-4\_50.
+\end{thebibliography}
+\end{document}
