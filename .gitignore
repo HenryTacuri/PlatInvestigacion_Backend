@@ -4,3 +4,10 @@ dockerfile
 *.png
 **/__pycache__/
 **/migrations/
+*.pyc
+resultados_busquedaTR.json
+lda_*
+sn-*
+.tex*
+Readme.docx
+.venv
