@@ -274,14 +274,37 @@ def generate_introduction(json_data, client, general_title, texto_completo, line
 def generate_conclusion(client, general_title, texto_completo, lineas_investigacion, areas_interes, max_words=250, model="gpt-4o mini", max_tokens=1000, temperature=0.7):
     
     prompt = (
-        f"Como experto en investigación y en las líneas de investigación: {lineas_investigacion} y las áreas de interés {areas_interes}, "
-        f"y para un artículo en inglés con el título {general_title}. "
-        f"Específicamente, para la sección de Conclucion, escribe esta sección de forma fluida, sin subsecciones. "
-        f"1. El texto es el siguiente: {texto_completo}. "
-        f"2. de las the main contributions saca una Conclucion en un parrafo. "
-        f"3. Valida la gramática , y verifica que el texto tenga un máximo de 250 palabras. "
-        f"4. No agregues el titulo de la seccion al inicio de tu respuesta"
-        f"5. No incluyas caracteres especiales en el texto que puedan dañar la compilacion de mi latex y recuerda todo en ingles"
+        f"Eres un asistente especializado en redacción científica y revisión de artículos académicos en inglés. "
+        f"Tu rol es generar una sección de Conclusión para un artículo con las siguientes características: "
+        
+        f"1. **Contexto:**\n"
+        f"- Líneas de investigación: {lineas_investigacion}\n"
+        f"- Áreas de interés: {areas_interes}\n"
+        f"- Título del artículo: {general_title}\n"
+        
+        f"2. **Objetivo específico:**\n"
+        f"Redacta una Conclusión en un solo párrafo, siguiendo estas directrices:\n"
+        f"- **Restatea brevemente** el problema de investigación y su relevancia (sin repetir el Abstract).\n"
+        f"- **Resume los hallazgos clave** (máximo 3-4 puntos) derivados de {texto_completo}.\n"
+        f"- **Discute implicaciones prácticas** o teóricas de los resultados.\n"
+        f"- **Menciona limitaciones del estudio** y propuestas para investigación futura.\n"
+        f"- Usa un máximo de 250 palabras (verifica y ajusta si excede).\n"
+        f"- Valida la gramática, terminología técnica y coherencia lógica.\n"
+        f"- Asegura que el texto sea fluido, sin subsecciones ni listas numeradas.\n"
+        f"- Incluye 1-2 palabras clave relevantes de {areas_interes} para visibilidad académica.\n"
+        
+        f"3. **Restricciones técnicas:**\n"
+        f"- No incluyas el título de la sección 'Conclusion' en la respuesta.\n"
+        f"- Evita caracteres especiales (ej.: #, %, &, $, _, ^) para compatibilidad con LaTeX.\n"
+        f"- Usa solo texto plano (sin markdown, cursivas o negritas).\n"
+        f"- Respuesta exclusivamente en inglés, manteniendo el estilo académico formal.\n"
+        f"- No incluyas las keywords al final de la redacción.\n"
+        
+        f"4. **Entrada adicional:**\n"
+        f"- Texto preliminar proporcionado: {texto_completo}\n"
+        f"- Integra y mejora este contenido sin omitir información crítica sobre las contribuciones principales.\n"
+        
+        f"Genera la Conclusión final ahora:"
     )
 
     
@@ -325,13 +348,39 @@ def generate_keywords(client, general_title, texto_completo, lineas_investigacio
 def generate_abstract(client, general_title, texto_completo, lineas_investigacion, areas_interes, max_words=150, model="gpt-4o mini", max_tokens=1000, temperature=0.7):
     
     prompt = (
-        f"Como experto en investigación y en las líneas de investigación: {lineas_investigacion} y las áreas de interés {areas_interes}, "
-        f"y para un artículo en inglés con el título {general_title}. "
-        f"Específicamente, para la sección de Abstract, escribe esta sección de forma fluida, sin subsecciones. "
-        f"1. El texto es el siguiente: {texto_completo}. "
-        f"2. Valida la gramática , y verifica que el texto tenga un máximo de 250 palabras. "
-        f"3. No agregues el titulo de la seccion al inicio de tu respuesta"
-        f"4. No incluyas caracteres especiales en el texto que puedan dañar la compilacion de mi latex y recuerda todo en ingles"
+        f"Eres un asistente especializado en redacción científica y revisión de artículos académicos en inglés. "
+        f"Tu rol es generar un Abstract para un artículo con las siguientes características: "
+        
+        f"1. **Contexto:**\n"
+        f"- Líneas de investigación: {lineas_investigacion}\n"
+        f"- Áreas de interés: {areas_interes}\n"
+        f"- Título del artículo: {general_title}\n"
+        
+        f"2. **Objetivo específico:**\n"
+        f"Redacta el Abstract siguiendo estas directrices:\n"
+        f"- **Estructura obligatoria (4 elementos):**\n"
+        f"   a) **Problema de investigación:** Define brevemente el problema central y su relevancia.\n"
+        f"   b) **Metodología:** Describe el enfoque metodológico (ej.: diseño experimental, análisis de datos).\n"
+        f"   c) **Resultados clave:** Menciona 2-3 hallazgos principales con impacto sustancial.\n"
+        f"   d) **Implicaciones:** Explica la contribución teórica/práctica del estudio.\n"
+        f"- **Integración de texto:** Usa {texto_completo} como base, pero reescribe y sintetiza la información     crítica sin copiar literalmente.\n"
+        f"- **Palabras clave:** Incluye 2-3 términos clave de {areas_interes} de forma natural (no como lista).\n"
+        f"- **Límite de palabras:** Máximo 250 palabras (cuenta y ajusta si excede).\n"
+        f"- **Calidad lingüística:** Asegura gramática impecable, terminología técnica y coherencia lógica.\n"
+        f"- **Estilo fluido:** Estructura en oraciones conectadas, sin subsecciones ni listas numeradas.\n"
+        
+        f"3. **Restricciones técnicas:**\n"
+        f"- No incluyas el título 'Abstract' ni etiquetas como 'Keywords'.\n"
+        f"- Evita caracteres especiales (ej.: #, %, &, $, _, ^) para compatibilidad con LaTeX.\n"
+        f"- Usa solo texto plano (sin markdown, cursivas o negritas).\n"
+        f"- Respuesta exclusivamente en inglés, con estilo académico formal y objetivo.\n"
+        f"- No menciones limitaciones del estudio (esto se reserva para la Conclusión).\n"
+        
+        f"4. **Entrada adicional:**\n"
+        f"- Texto preliminar proporcionado: {texto_completo}\n"
+        f"- Integra y mejora este contenido sin omitir información crítica, pero evita redundancias con el Abstract original.\n"
+        
+        f"Genera el Abstract final ahora:"
     )
 
     
