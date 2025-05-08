@@ -21,32 +21,71 @@ def procesar_list_refs_paper(texto):
         citas = []
     return texto, citas
 
+def clean_hematoxylin_expression(text):
+    """Reemplaza cualquier variante de H&E (con o sin LaTeX) a H\&E"""
+    # Elimina espacios y tabulaciones entre H y &E
+    text = re.sub(r'H\s*\\?textbackslash\{\}?\s*&\s*E', r'H\&E', text)
+    text = re.sub(r'H\s*\\\s*&\s*E', r'H\&E', text)
+    return text
+
+def escape_latex_special_chars(text):
+    # 1. Elimina tabulaciones y espacios múltiples
+    text = re.sub(r'\t+', ' ', text)
+    text = re.sub(r' +', ' ', text)
+    
+    # 2. Reemplaza `&` solo si NO está escapado
+    text = re.sub(r'(?<!\\)&', r'\\&', text)
+    
+    # 3. Escapa otros caracteres comunes
+    replacements = {
+        '%': r'\%',
+        '$': r'\$',
+        '#': r'\#',
+        '~': r'\textasciitilde{}',
+        '^': r'\textasciicircum{}',
+        '\\': r'\textbackslash{}'
+    }
+    for char, replacement in replacements.items():
+        text = re.sub(r'(?<!\\)' + re.escape(char), replacement, text)
+    return text
+
+def fix_latex_citations(text):
+    # Corrige casos como \textbackslash{}cite{}, extbackslash{}cite{}, \cite{}, etc.
+    text = re.sub(r'(?:\\textbackslash\{\}|\$?extbackslash\{\}|\$?textbackslash\{\})?cite\{([^}]*)\}', r'\\cite{\1}', text)
+    # Elimina espacios entre \cite y {
+    text = re.sub(r'\\cite\s*\{', r'\\cite{', text)
+    return text
+
 def summarize_section(client, general_title, section_title, articles, lineas_investigacion, areas_interes, max_words, model="gpt-4o mini", max_tokens=8000, temperature=0.7):
     texts = "\n\n".join([f"Texto: {article['Text']}\nCita: ({article['Citation']})\nCodigo:({article['Codigo']})" for article in articles])
     codes = "\n".join([article['Codigo'] for article in articles])
     
     prompt = (
-        f"Como experto en investigación en {lineas_investigacion} y {areas_interes}, escribe un resumen para la sección {section_title} en inglés basado exclusivamente en el siguiente texto: {texts}. "
-        f"\n\n**Instrucciones detalladas:**"
-        f"\n1. **Citas obligatorias**:"
-        f"\n   - Cada afirmación relevante debe incluir al menos tres citas en el formato \\cite{{...}} basándose en los códigos de referencia encontrados en Codigo:[]."
-        f"\n   - Es obligatorio que el texto tenga al menos tres citas con su respectivo código."
-        f"\n   - Solo deves poner los codigos que estan en Codigo:[]"
-        f"\n\n2. **Formato del resumen**:"
-        f"\n   - No inicies con un título de sección."
-        f"\n   - Mantén un hilo conductor en todo el resumen."
-        f"\n   - No incluyas nombres de autores dentro del texto. Solo usa \\cite{{...}} para referenciar."
-        f"\n   - Usa un máximo de {max_words} palabras."
-        f"\n\n3. **Lista de referencias usadas**:"
-        f"\n   - Al final del resumen, incluye una lista llamada listRefsPaper con TODOS los códigos de referencia utilizados en orden de aparición."
-        f"\n   - Ejemplo: listRefsPaper[E._2019, Jonathan_2023, Hafsa_2023]."
-        f"\n   - Esta lista no debe tener formato LaTeX, solo texto plano."
-        f"\n   - En la lista deven de estar todos los codigo que agregas al texto revisa y agrega a la lista"
-        f"\n\n4. **Revisión final**:"
-        f"\n   - Asegúrate de que el resumen tenga al menos tres citas bien distribuidas."
-        f"\n   - Valida la gramática y la coherencia del texto."
-        f"\n   - No uses caracteres especiales que puedan causar problemas en LaTeX."
-        f"\n\nRecuerda: **Las citas son obligatorias y deben estar en el formato correcto**."
+        f"**Role:** Act as a researcher specialized in {lineas_investigacion} and {areas_interes}, with expertise in writing rigorous academic summaries.\n"
+        f"**Objective:** Write a concise, formal summary in English for the section '{section_title}' focused on '{general_title}', based *exclusively* on the provided text: {texts}.\n"
+        f"**Tone & Style:**\n"
+        f"   - Use a **formal, objective, and technical tone**, typical of peer-reviewed scientific articles.\n"
+        f"   - Avoid subjective language (e.g., 'in my opinion', 'quite clear').\n"
+        f"   - Prioritize clarity, precision, and logical flow.\n\n"
+        f"**Constraints:**\n"
+        f"1. **Mandatory Citations:**\n"
+        f"   - Include **3 citations per relevant claim** in LaTeX format: \\cite{{code}}.\n"
+        f"   - Use only the codes listed in 'Codigo:[...]'. Do not invent codes.\n"
+        f"   - Example: \\cite{{E._2019}}.\n\n"
+        f"2. **Summary Format:**\n"
+        f"   - Do NOT include section headers or author names.\n"
+        f"   - Maintain a coherent narrative around '{general_title}'.\n"
+        f"   - Maximum {max_words} words. Be concise but comprehensive.\n"
+        f"   - Avoid LaTeX-breaking characters (e.g., &, %, $).\n\n"
+        f"3. **References List (listRefsPaper):**\n"
+        f"   - End with a plain-text list of **all cited codes** in order of appearance.\n"
+        f"   - Format: listRefsPaper[E._2019, Jonathan_2023, Hafsa_2023].\n"
+        f"   - No LaTeX or special symbols in this list.\n\n"
+        f"4. **Final Validation:**\n"
+        f"   - Ensure at least 3 citations are naturally distributed.\n"
+        f"   - Verify grammar, coherence, and compliance with all instructions.\n"
+        f"   - Prioritize accuracy over verbosity. If the input lacks sufficient data, respond with: 'ERROR: Insufficient references to generate summary.'\n\n"
+        f"**Critical Rule:** Never add external information. Only use content and codes from the provided text."
     )
 
 
@@ -61,6 +100,14 @@ def summarize_section(client, general_title, section_title, articles, lineas_inv
         temperature=temperature,
     )
     summary = response.choices[0].message.content.strip()
+    # Paso 1: Limpiar expresiones como H&E
+    summary = clean_hematoxylin_expression(summary)
+    
+    # Paso 2: Escapar caracteres especiales
+    summary = escape_latex_special_chars(summary)
+    
+    # Paso 3: Corregir citaciones LaTeX
+    summary = fix_latex_citations(summary)
     return summary
 
 def generate_section_summaries(json_data, lineas_investigacion, areas_interes, max_words, model="gpt-4o mini", max_tokens=1000, temperature=0.7):
@@ -169,17 +216,32 @@ def estructuraDoc(metodologia, secciones):
 def generate_introduction(json_data, client, general_title, texto_completo, lineas_investigacion, areas_interes, principales_contribuciones, metodologia, secciones, max_words, model, max_tokens=1000, temperature=0.7):
     print("1i")
     prompt = (
-        f"Como experto en investigación y en las líneas de investigación: {lineas_investigacion} y las áreas de interés {areas_interes}, "
-        f"y para un artículo en inglés con el título 'Survey of {general_title}'. "
-        f"Específicamente, para la sección de Introducción, escribe esta sección de forma fluida, sin subsecciones, con la siguiente estructura: "
-        f"1. Fundamentos principales del tema, 2. Un hook o motivación para atraer a los lectores, 3. Presentación del problema general y sub-problemas, "
-        f"4. Justificación de la importancia para abordar estos problemas, 5. Soluciones más relevantes, 6. Breve descripción de nuestra metodología para desarrollo del survey del tema {general_title}, "
-        f"Esto basándote solamente y exclusivamente en el siguiente texto que incluye las referencias respectivas {texto_completo}. "
-        f"No incluyas al inicio como título el tema de la sección. Genera el texto con máximo {max_words} palabras y manteniendo un hilo conductor en toda la sección. "
-        f"Incluye las citas en el lugar adecuado dentro del texto con formato para LaTeX, es decir, cada cita con \\cite asignando el código correspondiente de la referencia que encuentras dentro de Codigo:() asociado a la referencia. "
-        f"No incluyas los nombres de autores en el texto. Por ejemplo, para citar indica: 'In \\cite ...' o 'as presented in \\cite'. "
-        f"Valida la gramática y el hilo conductor de toda la sección, y verifica que el texto tenga un máximo de {max_words} palabras. "
-        f"No incluyas caracteres especiales en el texto que puedan dañar la compilacion de mi latex y recuerda todo en ingles"
+        f"**Role:** Act as an academic expert in {lineas_investigacion} and {areas_interes}, tasked with writing the **Introduction** for a survey article titled 'Survey of {general_title}' intended for a scholarly audience.\n"
+        f"**Objective:** Write **two concise paragraphs** (max {max_words} words total) that cover these elements in order:\n"
+        f"   1. Foundational concepts of the topic\n"
+        f"   2. Motivation (real-world challenge, surprising fact, or unresolved issue)\n"
+        f"   3. General problem and specific sub-problems addressed in literature\n"
+        f"   4. Justification of importance\n"
+        f"   5. Three seminal solutions/approaches (cite only these)\n"
+        f"   6. Methodology for developing this survey\n"
+        f"**Constraints:**\n"
+        f"   - Use ONLY the provided text: {texto_completo}\n"
+        f"   - No subsections, titles, or markdown. Maintain a single, flowing introduction.\n"
+        f"   - Formal academic tone, no colloquial language.\n"
+        f"   - Cite references in LaTeX format: \\cite{{refXXX}}. Do NOT mention authors' names.\n"
+        f"   - Limit citations in point 5 to 3 seminal works. Avoid excessive citation in paragraph 2.\n"
+        f"   - If critical data is missing, state: 'This aspect remains under-explored in current literature.'\n"
+        f"   - No special characters (e.g., &, %, $) that could break LaTeX.\n"
+        f"   - Ensure logical flow between paragraphs using causal markers (e.g., 'This challenge necessitates...', 'Consequently...').\n"
+        f"**Validation Checklist:**\n"
+        f"   - [ ] All content derived exclusively from {texto_completo}\n"
+        f"   - [ ] Citations correctly formatted (\\cite{{...}})\n"
+        f"   - [ ] Total word count ≤ {max_words}\n"
+        f"   - [ ] Grammar and coherence checked\n"
+        f"   - [ ] No subjective or emotional language\n"
+        f"**Example Output:**\n"
+        f"   Paragraph 1: 'Recent advances in X have highlighted foundational challenges in Y (\\cite{{ref1}}). A critical issue arises from Z, which affects...' \n"
+        f"   Paragraph 2: 'To address this, seminal works like \\cite{{ref2}} and \\cite{{ref3}} proposed ABC methods. This survey builds on these approaches by...'"
     )
     print("2i")
     response = client.chat.completions.create(
@@ -477,6 +539,10 @@ def latexOrigContribuciones(contribucioneOriginales):
     )
     contribucioneOriginalesLatex = response.choices[0].message.content.strip()
     contribucioneOriginalesLatex = re.sub(r"```[a-zA-Z]*\n|```", "", contribucioneOriginalesLatex).strip()
+    contribucioneOriginalesLatex = re.sub(
+    r'(\\begin\{itemize\}\[label=\\textbullet)\s+(\])',
+    r'\1\2',
+    contribucioneOriginalesLatex)
     return contribucioneOriginalesLatex
 
 def escape_ampersand(text):
