@@ -7,7 +7,7 @@ nltk
 openai
 pandas
 pathlib
-plotly
+plotly==5.24.1
 PyPDF2
 requests
 djangorestframework
@@ -16,3 +16,9 @@ whitenoise
 django-cors-headers
 pyyaml
 jinja2
+beautifulsoup4
+pymupdf
+matplotlib
+openpyxl
+xmltodict
+lxml
